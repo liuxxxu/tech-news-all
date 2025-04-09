@@ -12,7 +12,6 @@
     <artifactId>tech-news-starter</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>tech-news-aliyunsecurity-spring-boot-starter</module>
         <module>tech-news-schedule-spring-boot-starter</module>
         <module>tech-news-es-spring-boot-starter</module>
         <module>tech-news-file-spring-boot-starter</module>

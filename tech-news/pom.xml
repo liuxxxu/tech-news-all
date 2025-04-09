@@ -241,16 +241,16 @@
                 <artifactId>hanlp</artifactId>
                 <version>${hanlp.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-core</artifactId>
-                <version>${ali.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-green</artifactId>
-                <version>${ali.green.version}</version>
-            </dependency>
+            <!-- <dependency> -->
+            <!--     <groupId>com.aliyun</groupId> -->
+            <!--     <artifactId>aliyun-java-sdk-core</artifactId> -->
+            <!--     <version>${ali.core.version}</version> -->
+            <!-- </dependency> -->
+            <!-- <dependency> -->
+            <!--     <groupId>com.aliyun</groupId> -->
+            <!--     <artifactId>aliyun-java-sdk-green</artifactId> -->
+            <!--     <version>${ali.green.version}</version> -->
+            <!-- </dependency> -->
             <!-- junit -->
             <dependency>
                 <groupId>junit</groupId>

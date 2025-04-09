@@ -62,7 +62,7 @@
                 width="100%"
                 height="180"
                 fit="cover"
-                src="https://images.unsplash.com/photo-1495020689067-958852a7765e"
+                src="https://img.pcauto.com.cn/images/upload/upc/tx/auto5/2410/31/c6/460149191_1730358944955.jpg"
                 alt="新闻图片"
               />
               <span class="top-tag">置顶</span>
@@ -176,7 +176,7 @@ const newsList = ref([
     description: '受多重利好因素影响，全球主要股指普遍上涨...',
     source: '财经周刊',
     time: '3小时前',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3',
+    image: 'https://s1.xiaomiev.com/activity-outer-assets/0328/images/su7/su7_1.jpg',
     views: '8.2万',
     likes: '1.5万'
   },
@@ -227,7 +227,7 @@ const fetchNewsList = async (isLoadMore = false) => {
         description: '随着新能源汽车市场的快速发展，产业链上下游企业迎来新的发展机遇...',
         source: '产业观察',
         time: '5小时前',
-        image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7',
+        image: 'https://s1.xiaomiev.com/activity-outer-assets/0328/images/su7/su7_1.jpg',
         views: '7.8万',
         likes: '1.3万'
       },
@@ -235,7 +235,7 @@ const fetchNewsList = async (isLoadMore = false) => {
         id: newsList.value.length + 2,
         title: '数字化转型：传统企业的机遇与挑战',
         description: '在后疫情时代，越来越多的传统企业开始积极拥抱数字化转型...',
-        source: '商业评论',
+        source: '商业评论1',
         time: '6小时前',
         views: '6.5万',
         likes: '1.1万'

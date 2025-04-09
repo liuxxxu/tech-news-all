@@ -1,11 +1,12 @@
 package com.liuxu.comment.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.liuxu.aliyun.scan.GreenScan;
-import com.liuxu.aliyun.scan.ScanResult;
 import com.liuxu.comment.service.CommentService;
 import com.liuxu.common.constants.article.HotArticleConstants;
+import com.liuxu.common.dtos.ResponseResult;
+import com.liuxu.common.enums.AppHttpCodeEnum;
 import com.liuxu.common.exception.CustException;
+import com.liuxu.common.threadlocal.AppThreadLocalUtils;
 import com.liuxu.feigns.UserFeign;
 import com.liuxu.model.article.pojos.AppArticle;
 import com.liuxu.model.comment.dtos.CommentDTO;
@@ -14,10 +15,7 @@ import com.liuxu.model.comment.dtos.CommentSaveDTO;
 import com.liuxu.model.comment.pojos.AppComment;
 import com.liuxu.model.comment.pojos.AppCommentLike;
 import com.liuxu.model.comment.vos.AppCommentVo;
-import com.liuxu.common.dtos.ResponseResult;
-import com.liuxu.common.enums.AppHttpCodeEnum;
 import com.liuxu.model.message.app.NewBehaviorDTO;
-import com.liuxu.common.threadlocal.AppThreadLocalUtils;
 import com.liuxu.model.user.pojos.AppUser;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -49,9 +47,6 @@ public class CommentServiceImpl implements CommentService {
     private UserFeign userFeign;
 
     @Autowired
-    private GreenScan greenScan;
-
-    @Autowired
     private RedissonClient redissonClient;
 
     @Autowired
@@ -75,27 +70,27 @@ public class CommentServiceImpl implements CommentService {
         dto.getArticleId();
 
         // 阿里云校验评论内容是否违规(简单: 此步不做 普通: 阿里云检测有问题提示 高级: 有问题不报异常，替换为**)
-        try {
-            ScanResult scanResult = greenScan.greenTextScan(dto.getContent());
-            switch (scanResult.getSuggestion()) {
-                case "block":
-                    // 失败
-                    CustException.throwException(AppHttpCodeEnum.PARAM_INVALID, "评论非法");
-                    break;
-                case "review":
-                    // 人工
-
-                    break;
-                case "pass":
-                    // 成功
-                    break;
-                default:
-                    // 人工
-                    break;
-            }
-        } catch (Exception e) {
-            CustException.throwException(AppHttpCodeEnum.SERVER_ERROR, "远程调用阿里云内容服务失败");
-        }
+        // try {
+        //     ScanResult scanResult = greenScan.greenTextScan(dto.getContent());
+        //     switch (scanResult.getSuggestion()) {
+        //         case "block":
+        //             // 失败
+        //             CustException.throwException(AppHttpCodeEnum.PARAM_INVALID, "评论非法");
+        //             break;
+        //         case "review":
+        //             // 人工
+        //
+        //             break;
+        //         case "pass":
+        //             // 成功
+        //             break;
+        //         default:
+        //             // 人工
+        //             break;
+        //     }
+        // } catch (Exception e) {
+        //     CustException.throwException(AppHttpCodeEnum.SERVER_ERROR, "远程调用阿里云内容服务失败");
+        // }
 
         // 3. 远程查询当前登陆用户信息
         AppUser appUser = userFeign.findUserById(userId).getData();

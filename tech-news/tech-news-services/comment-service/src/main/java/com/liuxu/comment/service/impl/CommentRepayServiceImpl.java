@@ -1,9 +1,10 @@
 package com.liuxu.comment.service.impl;
 
-import com.liuxu.aliyun.scan.GreenScan;
-import com.liuxu.aliyun.scan.ScanResult;
 import com.liuxu.comment.service.CommentRepayService;
+import com.liuxu.common.dtos.ResponseResult;
+import com.liuxu.common.enums.AppHttpCodeEnum;
 import com.liuxu.common.exception.CustException;
+import com.liuxu.common.threadlocal.AppThreadLocalUtils;
 import com.liuxu.feigns.UserFeign;
 import com.liuxu.model.comment.dtos.CommentRepayDTO;
 import com.liuxu.model.comment.dtos.CommentRepayLikeDTO;
@@ -12,9 +13,6 @@ import com.liuxu.model.comment.pojos.AppComment;
 import com.liuxu.model.comment.pojos.AppCommentRepay;
 import com.liuxu.model.comment.pojos.AppCommentRepayLike;
 import com.liuxu.model.comment.vos.AppCommentRepayVO;
-import com.liuxu.common.dtos.ResponseResult;
-import com.liuxu.common.enums.AppHttpCodeEnum;
-import com.liuxu.common.threadlocal.AppThreadLocalUtils;
 import com.liuxu.model.user.pojos.AppUser;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,11 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,8 +38,6 @@ public class CommentRepayServiceImpl implements CommentRepayService {
     @Autowired
     private UserFeign userFeign;
 
-    @Autowired
-    private GreenScan greenScan;
 
     /**
      * 查看更多回复内容
@@ -119,27 +119,27 @@ public class CommentRepayServiceImpl implements CommentRepayService {
         }
 
         // 3.安全过滤
-        try {
-            ScanResult scanResult = greenScan.greenTextScan(dto.getContent());
-            switch (scanResult.getSuggestion()) {
-                case "block":
-                    // 失败
-                    CustException.throwException(AppHttpCodeEnum.PARAM_INVALID, "回复非法");
-                    break;
-                case "review":
-                    // 人工
-
-                    break;
-                case "pass":
-                    // 成功
-                    break;
-                default:
-                    // 人工
-                    break;
-            }
-        } catch (Exception e) {
-            CustException.throwException(AppHttpCodeEnum.SERVER_ERROR, "阿里云安全服务错误");
-        }
+        // try {
+        //     ScanResult scanResult = greenScan.greenTextScan(dto.getContent());
+        //     switch (scanResult.getSuggestion()) {
+        //         case "block":
+        //             // 失败
+        //             CustException.throwException(AppHttpCodeEnum.PARAM_INVALID, "回复非法");
+        //             break;
+        //         case "review":
+        //             // 人工
+        //
+        //             break;
+        //         case "pass":
+        //             // 成功
+        //             break;
+        //         default:
+        //             // 人工
+        //             break;
+        //     }
+        // } catch (Exception e) {
+        //     CustException.throwException(AppHttpCodeEnum.SERVER_ERROR, "阿里云安全服务错误");
+        // }
 
         // 4. 保存评论
         ResponseResult<AppUser> userResult = userFeign.findUserById(userId);
