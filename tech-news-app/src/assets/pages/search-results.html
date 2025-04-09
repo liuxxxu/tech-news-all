@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果 - 新闻咨询平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .category-tab.active {
+            color: #3b82f6;
+            font-weight: 600;
+            border-bottom: 2px solid #3b82f6;
+        }
+        .filter-option.active {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- 搜索框区域 -->
+    <div class="fixed top-0 left-0 right-0 bg-white z-50">
+        <div class="p-3 border-b">
+            <div class="flex items-center">
+                <div class="flex-1 bg-gray-100 rounded-full flex items-center">
+                    <i class="fas fa-search text-gray-400 ml-3"></i>
+                    <input type="text" value="AI优化" 
+                          class="flex-1 bg-transparent py-2 px-3 focus:outline-none text-sm">
+                    <i class="fas fa-times-circle text-gray-400 mr-3"></i>
+                </div>
+                <a href="javascript:history.back()" class="ml-3 text-gray-500">取消</a>
+            </div>
+        </div>
+
+        <!-- 选项栏 -->
+        <div class="border-b">
+            <!-- 主分类选项 -->
+            <div class="flex items-center px-3">
+                <div class="flex-1 flex overflow-x-auto py-3 space-x-8">
+                    <span class="category-tab active px-1 pb-2">资讯</span>
+                    <span class="category-tab px-1 pb-2">用户</span>
+                </div>
+            </div>
+
+            <!-- 筛选选项 -->
+            <div class="flex items-center px-3 py-2 text-sm text-gray-500 border-t">
+                <div class="flex-1 flex justify-between">
+                    <div class="filter-option active flex items-center">
+                        综合排序
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </div>
+                    <div class="filter-option flex items-center">
+                        全部分类
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 搜索结果列表 -->
+    <div class="mt-32 px-3">
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    5:29
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-gray-900">现在</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">编程这么厉害，还有必须学代码吗？怎么用</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">来帮自己...</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>玄离199</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>3.9万播放</span>
+                    <span class="mx-3">·</span>
+                    <span>131评论</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    2:26
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-gray-900">涨星速度起飞？超好用的</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">客户端！高质量开源项目</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>神秘的鱼仔</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>1.6万播放</span>
+                    <span class="mx-3">·</span>
+                    <span>5评论</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    28:9
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-gray-900">Cursor编程实战演示——用思维链方法让</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">写</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">提示词</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>kate人不错</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>2.3万播放</span>
+                    <span class="mx-3">·</span>
+                    <span>7评论</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    4:21
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-blue-500">AI简历优化</span>
+                    <span class="text-gray-900">神器！用deepseek三分钟让HR一眼选中你！</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>LYFJSL</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>184播放</span>
+                    <span class="mx-3">·</span>
+                    <span>-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1555952517-2e8e729e0b44?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    8:41
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-blue-500">AI优化</span>
+                    <span class="text-gray-900">简历的技巧与实战分享</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>壹天小站</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>93播放</span>
+                    <span class="mx-3">·</span>
+                    <span>2评论</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索结果项 -->
+        <div class="flex border-b py-4">
+            <div class="w-36 h-24 bg-gray-200 rounded relative">
+                <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?w=1080&h=720&fit=crop" class="w-full h-full object-cover rounded" alt="缩略图">
+                <div class="absolute bottom-1 right-1 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
+                    11:57
+                </div>
+            </div>
+            <div class="ml-3 flex-1">
+                <h3 class="text-base line-clamp-2">
+                    <span class="text-gray-900">拒绝低质量出图！3种快速提高</span>
+                    <span class="text-blue-500">AI</span>
+                    <span class="text-gray-900">绘画分辨率的方式，十分钟...</span>
+                </h3>
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                    <span class="px-1 border border-gray-300 rounded mr-2">UP</span>
+                    <span>Nenly同学</span>
+                </div>
+                <div class="mt-1 flex items-center text-sm text-gray-400">
+                    <span>88.8万播放</span>
+                    <span class="mx-3">·</span>
+                    <span>1928评论</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 筛选下拉菜单 - 综合排序 (默认隐藏) -->
+    <div class="hidden fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-50">
+        <div class="bg-white absolute top-32 left-0 right-0 py-3">
+            <div class="px-4 py-2">
+                <div class="py-2 text-blue-500 font-medium flex items-center">
+                    <i class="fas fa-check mr-2"></i>
+                    综合排序
+                </div>
+                <div class="py-2 text-gray-700">
+                    最新发布
+                </div>
+                <div class="py-2 text-gray-700">
+                    最多浏览
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 筛选下拉菜单 - 全部分类 (默认隐藏) -->
+    <div class="hidden fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-50">
+        <div class="bg-white absolute top-32 left-0 right-0 py-3">
+            <div class="px-4 py-2">
+                <div class="py-2 text-blue-500 font-medium flex items-center">
+                    <i class="fas fa-check mr-2"></i>
+                    全部分类
+                </div>
+                <div class="py-2 text-gray-700">科技</div>
+                <div class="py-2 text-gray-700">财经</div>
+                <div class="py-2 text-gray-700">体育</div>
+                <div class="py-2 text-gray-700">娱乐</div>
+                <div class="py-2 text-gray-700">军事</div>
+                <div class="py-2 text-gray-700">国际</div>
+                <div class="py-2 text-gray-700">健康</div>
+                <div class="py-2 text-gray-700">教育</div>
+                <div class="py-2 text-gray-700">汽车</div>
+                <div class="py-2 text-gray-700">旅游</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

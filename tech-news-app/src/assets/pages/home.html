@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - 新闻资讯平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .category-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <div class="fixed top-0 left-0 right-0 bg-white z-50">
+        <div class="flex items-center justify-between px-4 py-2">
+            <div class="flex items-center space-x-4">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=faces" 
+                     class="w-10 h-10 rounded-full" alt="用户头像">
+                <div class="relative">
+                    <input type="text" placeholder="搜索新闻" 
+                           class="w-48 h-8 pl-8 pr-4 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i class="fas fa-search absolute left-2 top-2 text-gray-400"></i>
+                </div>
+            </div>
+            <div class="relative">
+                <i class="fas fa-bell text-xl text-gray-600"></i>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+            </div>
+        </div>
+        
+        <!-- 分类栏 -->
+        <div class="flex items-center px-4 py-2 border-b">
+            <div class="flex space-x-4 overflow-x-auto category-scroll flex-1">
+                <span class="text-blue-500 font-medium">推荐</span>
+                <span class="text-gray-600">热点</span>
+                <span class="text-gray-600">科技</span>
+                <span class="text-gray-600">财经</span>
+                <span class="text-gray-600">体育</span>
+                <span class="text-gray-600">娱乐</span>
+                <span class="text-gray-600">军事</span>
+                <span class="text-gray-600">国际</span>
+            </div>
+            <a href="category-manage.html" class="ml-2 text-gray-600">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 新闻列表 -->
+    <div class="mt-24 px-4">
+        <!-- 置顶新闻 -->
+        <div class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=400&fit=crop" 
+                     class="w-full h-48 object-cover" alt="新闻图片">
+                <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">置顶</span>
+            </div>
+            <div class="p-4">
+                <h3 class="text-lg font-medium mb-2">重大突破：科学家发现新型能源技术</h3>
+                <div class="flex items-center text-sm text-gray-500">
+                    <span>科技日报</span>
+                    <span class="mx-2">·</span>
+                    <span>2小时前</span>
+                </div>
+                <div class="flex items-center mt-2 text-sm text-gray-500">
+                    <span><i class="far fa-eye mr-1"></i>12.5万</span>
+                    <span class="mx-4"><i class="far fa-heart mr-1"></i>2.3万</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 普通新闻列表 -->
+        <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium mb-2">全球股市迎来新一轮上涨</h3>
+                        <p class="text-gray-600 text-sm mb-2">受多重利好因素影响，全球主要股指普遍上涨...</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>财经周刊</span>
+                            <span class="mx-2">·</span>
+                            <span>3小时前</span>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&h=150&fit=crop" 
+                         class="w-32 h-24 object-cover rounded" alt="新闻图片">
+                </div>
+                <div class="flex items-center mt-2 text-sm text-gray-500">
+                    <span><i class="far fa-eye mr-1"></i>8.2万</span>
+                    <span class="mx-4"><i class="far fa-heart mr-1"></i>1.5万</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-medium mb-2">2024年世界杯预选赛最新战报</h3>
+                        <p class="text-gray-600 text-sm mb-2">多支强队展开激烈角逐，精彩比赛不断...</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>体育新闻</span>
+                            <span class="mx-2">·</span>
+                            <span>4小时前</span>
+                        </div>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200&h=150&fit=crop" 
+                         class="w-32 h-24 object-cover rounded" alt="新闻图片">
+                </div>
+                <div class="flex items-center mt-2 text-sm text-gray-500">
+                    <span><i class="far fa-eye mr-1"></i>15.3万</span>
+                    <span class="mx-4"><i class="far fa-heart mr-1"></i>3.2万</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t">
+        <div class="flex justify-around py-2">
+            <div class="text-center text-blue-500">
+                <i class="fas fa-home text-xl"></i>
+                <p class="text-xs mt-1">首页</p>
+            </div>
+            <div class="text-center text-gray-500">
+                <i class="fas fa-compass text-xl"></i>
+                <p class="text-xs mt-1">动态</p>
+            </div>
+            <div class="text-center text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <p class="text-xs mt-1">我的</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

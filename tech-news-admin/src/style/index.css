@@ -1,0 +1,93 @@
+/* 全局样式 */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+}
+
+#app {
+  height: 100%;
+}
+
+.page-container {
+  padding: 20px;
+}
+
+/* 通用表单样式 */
+.form-container {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+/* 通用表格样式 */
+.table-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* 通用按钮间距 */
+.action-button {
+  margin-right: 8px;
+}
+
+/* 通用卡片样式 */
+.card-container {
+  margin-bottom: 20px;
+}
+
+/* 布局相关 */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.page-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 工具类 */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+} 
