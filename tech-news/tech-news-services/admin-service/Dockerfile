@@ -1,5 +1,9 @@
 # 设置JAVA版本
+<<<<<<< HEAD
 FROM java:8u111
+=======
+FROM java:8
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 # 指定存储卷, 任何向/tmp写入的信息都不会记录到容器存储层
 VOLUME /tmp
 # 拷贝运行JAR包

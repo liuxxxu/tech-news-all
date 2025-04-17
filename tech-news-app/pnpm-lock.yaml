@@ -11,6 +11,7 @@ importers:
       axios:
         specifier: ^1.8.4
         version: 1.8.4
+<<<<<<< HEAD
       json-bigint:
         specifier: ^1.0.0
         version: 1.0.0
@@ -20,6 +21,11 @@ importers:
       md5:
         specifier: ^2.3.0
         version: 2.3.0
+=======
+      less:
+        specifier: ^4.2.2
+        version: 4.2.2
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
       pinia:
         specifier: ^3.0.1
         version: 3.0.1(vue@3.5.13)
@@ -403,9 +409,12 @@ packages:
   axios@1.8.4:
     resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
+<<<<<<< HEAD
   bignumber.js@9.2.1:
     resolution: {integrity: sha512-+NzaKgOUvInq9TIUZ1+DRspzf/HApkCwD4btfuasFTdrfnOxqx853TgDpMolp+uv4RpRp7bPcEU2zKr9+fRmyw==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
@@ -421,9 +430,12 @@ packages:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< HEAD
   charenc@0.0.2:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
@@ -445,9 +457,12 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
+<<<<<<< HEAD
   crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
@@ -590,9 +605,12 @@ packages:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
 
+<<<<<<< HEAD
   is-buffer@1.1.6:
     resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
@@ -615,9 +633,12 @@ packages:
   js-tokens@9.0.1:
     resolution: {integrity: sha512-mxa9E9ITFOt0ban3j6L5MpjwegGz6lBQmM1IJkWeBZGcMxto50+eWdjC/52xDbS2vy0k7vIMK0Fe2wfL9OQSpQ==}
 
+<<<<<<< HEAD
   json-bigint@1.0.0:
     resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   less@4.2.2:
     resolution: {integrity: sha512-tkuLHQlvWUTeQ3doAqnHbNn8T6WX1KA8yvbKG9x4VtKtIjHsVKQZCH11zRgAfbDAXC2UNIg/K9BYAAcEzUIrNg==}
     engines: {node: '>=6'}
@@ -638,9 +659,12 @@ packages:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< HEAD
   md5@2.3.0:
     resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
@@ -1141,8 +1165,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+<<<<<<< HEAD
   bignumber.js@9.2.1: {}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   binary-extensions@2.3.0: {}
 
   birpc@0.2.19: {}
@@ -1156,8 +1183,11 @@ snapshots:
       es-errors: 1.3.0
       function-bind: 1.1.2
 
+<<<<<<< HEAD
   charenc@0.0.2: {}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   chokidar@3.6.0:
     dependencies:
       anymatch: 3.1.3
@@ -1186,8 +1216,11 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
+<<<<<<< HEAD
   crypt@0.0.2: {}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   csstype@3.1.3: {}
 
   debug@4.4.0:
@@ -1335,8 +1368,11 @@ snapshots:
     dependencies:
       binary-extensions: 2.3.0
 
+<<<<<<< HEAD
   is-buffer@1.1.6: {}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   is-extglob@2.1.1: {}
 
   is-glob@4.0.3:
@@ -1351,10 +1387,13 @@ snapshots:
 
   js-tokens@9.0.1: {}
 
+<<<<<<< HEAD
   json-bigint@1.0.0:
     dependencies:
       bignumber.js: 9.2.1
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   less@4.2.2:
     dependencies:
       copy-anything: 2.0.6
@@ -1387,12 +1426,15 @@ snapshots:
 
   math-intrinsics@1.1.0: {}
 
+<<<<<<< HEAD
   md5@2.3.0:
     dependencies:
       charenc: 0.0.2
       crypt: 0.0.2
       is-buffer: 1.1.6
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   mime-db@1.52.0: {}
 
   mime-types@2.1.35:

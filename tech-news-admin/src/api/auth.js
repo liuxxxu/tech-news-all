@@ -41,6 +41,7 @@ export const authFail = (data) => {
             reason: data.reason
         }
     })
+<<<<<<< HEAD
 }
 
 // 获取认证详情
@@ -49,4 +50,6 @@ export const findAuthDetail = (id) => {
         url: `/admin/api/auth/detail/${id}`,
         method: 'get'
     })
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 } 

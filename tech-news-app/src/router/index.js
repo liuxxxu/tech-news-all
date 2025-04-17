@@ -70,6 +70,7 @@ const routes = [
             title: '搜索结果'
         }
     },
+<<<<<<< HEAD
     // {
     //     path: '/article/:id',
     //     name: 'ArticleDetail',
@@ -82,6 +83,12 @@ const routes = [
         path: '/article',
         name: 'ArticleDetail',
         component: () => import('@/views/detail/index.vue'),
+=======
+    {
+        path: '/article/:id',
+        name: 'ArticleDetail',
+        component: () => import('@/views/article/detail.vue'),
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
         meta: {
             title: '文章详情'
         }

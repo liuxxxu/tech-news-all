@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+<<<<<<< HEAD
     <build>
         <plugins>
             <plugin>
@@ -35,4 +36,6 @@
         </plugins>
     </build>
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 </project>

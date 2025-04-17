@@ -190,7 +190,11 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { showToast, showLoadingToast, closeToast } from '../../utils/vant-ui';
+<<<<<<< HEAD
 // import { searchArticles } from '@/api/search';
+=======
+import { searchArticles } from '@/api/search';
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 
 const router = useRouter();
 const route = useRoute();
@@ -222,6 +226,7 @@ const page = ref(1);
 const pageSize = ref(10);
 const newsList = ref([]);
 
+<<<<<<< HEAD
 // 模拟用户数据
 const allUserList = ref([
   {
@@ -253,6 +258,8 @@ const allUserList = ref([
   }
 ]);
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 // 关闭所有弹出层
 const closeAllPopups = () => {
   showSortPopup.value = false;
@@ -276,6 +283,7 @@ const fetchSearchResults = async (isLoadMore = false) => {
   }
 
   try {
+<<<<<<< HEAD
     // 使用假数据
     const mockData = {
       list: [
@@ -344,6 +352,33 @@ const fetchSearchResults = async (isLoadMore = false) => {
     //     page.value += 1;
     //   }
     // }
+=======
+    const params = {
+      keyword: keyword.value,
+      page: page.value,
+      pageSize: pageSize.value,
+      sort: currentSort.value === '默认排序' ? 'default' : 
+            currentSort.value === '最新发布' ? 'newest' : 'most_viewed',
+      category: currentCategory.value === '全部分类' ? '' : currentCategory.value
+    };
+
+    const res = await searchArticles(params);
+    if (res.status === 200) {
+      const { list, total } = res.data;
+      
+      if (isLoadMore) {
+        newsList.value.push(...list);
+      } else {
+        newsList.value = list;
+      }
+
+      if (newsList.value.length >= total) {
+        finished.value = true;
+      } else {
+        page.value += 1;
+      }
+    }
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   } catch (error) {
     console.log('获取搜索结果失败', error);
     showToast('加载失败，请重试');

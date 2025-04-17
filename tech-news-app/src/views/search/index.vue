@@ -62,7 +62,11 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { showToast, showLoadingToast, closeToast } from '../../utils/vant-ui';
+<<<<<<< HEAD
 // import { getHotSearch, getSearchHistory, clearSearchHistory, addSearchHistory } from '@/api/search';
+=======
+import { getHotSearch, getSearchHistory, clearSearchHistory, addSearchHistory } from '@/api/search';
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 
 const router = useRouter();
 const searchValue = ref('');
@@ -72,6 +76,7 @@ const hotTopics = ref([]);
 
 // 获取搜索历史
 const fetchSearchHistory = async () => {
+<<<<<<< HEAD
   // 使用假数据
   searchHistory.value = [
     '人工智能',
@@ -90,10 +95,21 @@ const fetchSearchHistory = async () => {
   // } catch (error) {
   //   console.log('获取搜索历史失败', error);
   // }
+=======
+  try {
+    const res = await getSearchHistory();
+    if (res.status === 200) {
+      searchHistory.value = res.data;
+    }
+  } catch (error) {
+    console.log('获取搜索历史失败', error);
+  }
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 };
 
 // 获取热门搜索
 const fetchHotTopics = async () => {
+<<<<<<< HEAD
   // 使用假数据
   hotTopics.value = [
     'ChatGPT最新进展',
@@ -114,6 +130,16 @@ const fetchHotTopics = async () => {
   // } catch (error) {
   //   console.log('获取热门搜索失败', error);
   // }
+=======
+  try {
+    const res = await getHotSearch();
+    if (res.status === 200) {
+      hotTopics.value = res.data;
+    }
+  } catch (error) {
+    console.log('获取热门搜索失败', error);
+  }
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 };
 
 // 处理搜索操作
@@ -125,9 +151,15 @@ const onSearch = async () => {
   
   try {
     // 添加到搜索历史
+<<<<<<< HEAD
     // await addSearchHistory(searchValue.value);
     // 重新获取搜索历史
     // await fetchSearchHistory();
+=======
+    await addSearchHistory(searchValue.value);
+    // 重新获取搜索历史
+    await fetchSearchHistory();
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
     
     // 跳转到搜索结果页
     router.push({
@@ -158,11 +190,19 @@ const onFocus = () => {
 // 清除搜索历史
 const clearHistory = async () => {
   try {
+<<<<<<< HEAD
     // const res = await clearSearchHistory();
     // if (res.status === 200) {
     searchHistory.value = [];
     showToast('已清空搜索历史');
     // }
+=======
+    const res = await clearSearchHistory();
+    if (res.status === 200) {
+      searchHistory.value = [];
+      showToast('已清空搜索历史');
+    }
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   } catch (error) {
     console.log('清除搜索历史失败', error);
     showToast('清除失败，请重试');
@@ -191,8 +231,12 @@ const refreshHotTopics = async () => {
   });
   
   try {
+<<<<<<< HEAD
     // 模拟刷新，随机打乱热门话题顺序
     hotTopics.value = [...hotTopics.value].sort(() => Math.random() - 0.5);
+=======
+    await fetchHotTopics();
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
     closeToast();
     showToast('已更新热门搜索');
   } catch (error) {

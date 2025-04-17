@@ -17,9 +17,12 @@ importers:
       axios:
         specifier: ^1.8.4
         version: 1.8.4
+<<<<<<< HEAD
       big-int:
         specifier: ^0.0.6
         version: 0.0.6
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
       json-bigint:
         specifier: ^1.0.0
         version: 1.0.0
@@ -423,9 +426,12 @@ packages:
   axios@1.8.4:
     resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
+<<<<<<< HEAD
   big-int@0.0.6:
     resolution: {integrity: sha512-pZqaIaokMooq6YfKHAezWZigcARydjTLubkRh3cbaEtJwoCXvhmQu80mhwZq8Synv8khZjKq6M8GNM4cICRioQ==}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   bignumber.js@9.1.2:
     resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
 
@@ -1031,8 +1037,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+<<<<<<< HEAD
   big-int@0.0.6: {}
 
+=======
+>>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   bignumber.js@9.1.2: {}
 
   birpc@0.2.19: {}
