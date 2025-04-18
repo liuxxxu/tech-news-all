@@ -19,7 +19,6 @@
             <artifactId>jjwt</artifactId>
         </dependency>
     </dependencies>
-<<<<<<< HEAD
     <build>
         <plugins>
             <plugin>
@@ -31,6 +30,4 @@
             </plugin>
         </plugins>
     </build>
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 </project>
