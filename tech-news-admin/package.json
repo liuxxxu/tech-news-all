@@ -12,10 +12,7 @@
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "4.x",
     "axios": "^1.8.4",
-<<<<<<< HEAD
     "big-int": "^0.0.6",
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
     "json-bigint": "^1.0.0",
     "md5": "^2.3.0",
     "pinia": "^3.0.1",

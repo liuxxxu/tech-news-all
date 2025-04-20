@@ -26,12 +26,9 @@ importers:
       echarts:
         specifier: ^5.6.0
         version: 5.6.0
-<<<<<<< HEAD
       json-bigint:
         specifier: ^1.0.0
         version: 1.0.0
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
       md5:
         specifier: ^2.3.0
         version: 2.3.0
@@ -551,12 +548,9 @@ packages:
   axios@1.8.4:
     resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
-<<<<<<< HEAD
   bignumber.js@9.2.1:
     resolution: {integrity: sha512-+NzaKgOUvInq9TIUZ1+DRspzf/HApkCwD4btfuasFTdrfnOxqx853TgDpMolp+uv4RpRp7bPcEU2zKr9+fRmyw==}
 
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   birpc@0.2.19:
     resolution: {integrity: sha512-5WeXXAvTmitV1RqJFppT5QtUiz2p1mRSYU000Jkft5ZUCLJIk4uQriYNO50HknxKwM6jd8utNc66K1qGIwwWBQ==}
 
@@ -757,12 +751,9 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-<<<<<<< HEAD
   json-bigint@1.0.0:
     resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
 
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
@@ -1579,11 +1570,8 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-<<<<<<< HEAD
   bignumber.js@9.2.1: {}
 
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   birpc@0.2.19: {}
 
   buffer-builder@0.2.0: {}
@@ -1794,13 +1782,10 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-<<<<<<< HEAD
   json-bigint@1.0.0:
     dependencies:
       bignumber.js: 9.2.1
 
-=======
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
   lodash-es@4.17.21: {}
 
   lodash.camelcase@4.3.0: {}

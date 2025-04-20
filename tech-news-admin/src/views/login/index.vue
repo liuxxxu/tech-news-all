@@ -12,7 +12,6 @@
         @finish="onSubmit"
         class="login-form"
       >
-<<<<<<< HEAD
         <!-- 用户名输入 -->
         <a-form-item
           name="phone"
@@ -21,16 +20,6 @@
           <a-input
             v-model:value="loginForm.phone"
             placeholder="请输入用户名"
-=======
-        <!-- 手机号输入 -->
-        <a-form-item
-          name="phone"
-          :rules="[{ required: true, message: '请输入手机号' }]"
-        >
-          <a-input
-            v-model:value="loginForm.phone"
-            placeholder="请输入手机号"
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
             size="large"
           >
             <template #prefix>
@@ -97,11 +86,7 @@ const loginForm = ref({
 const onSubmit = async (values) => {
   try {
     const res = await loginByPassword({
-<<<<<<< HEAD
       name: values.phone,
-=======
-      name: values.name,
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
       password: encryptPassword(values.password)
     })
     

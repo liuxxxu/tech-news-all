@@ -111,7 +111,6 @@ const formatTime = (time) => {
 
 // 生命周期钩子
 onMounted(() => {
-<<<<<<< HEAD
   // 模拟数据
   const mockData = {
     id: '1',
@@ -131,19 +130,6 @@ onMounted(() => {
   Object.keys(authInfo).forEach(key => {
     if (key in mockData) {
       authInfo[key] = mockData[key]
-=======
-  // 从路由查询参数中获取认证信息
-  const query = route.query
-  
-  Object.keys(authInfo).forEach(key => {
-    if (key in query) {
-      // 对于状态，转换为数字类型
-      if (key === 'status') {
-        authInfo[key] = Number(query[key])
-      } else {
-        authInfo[key] = query[key]
-      }
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
     }
   })
 })
