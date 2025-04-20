@@ -111,15 +111,9 @@ const followsList = ref([
   },
   {
     id: 2,
-<<<<<<< HEAD
     username: '科技观察',
       avatar: 'https://img01.yzcdn.cn/vant/cat.jpeg',
     bio: '专注科技领域，解读行业动向',
-=======
-    username: '财经观察',
-    avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
-    bio: '专注财经领域，解读市场动向',
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
     isFollowing: true,
     isMutual: false
   }

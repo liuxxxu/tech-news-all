@@ -61,11 +61,7 @@
             width="50"
             height="50"
             src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-<<<<<<< HEAD
             alt="科技周刊"
-=======
-            alt="财经周刊"
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
           />
           <div class="avatar-name">财经周刊</div>
         </div>
@@ -87,11 +83,7 @@
             src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-4.jpeg"
             alt="娱乐圈"
           />
-<<<<<<< HEAD
           <div class="avatar-name">科技娱乐圈</div>
-=======
-          <div class="avatar-name">娱乐圈</div>
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
         </div>
         <div class="avatar-item">
           <van-image
@@ -101,11 +93,7 @@
             src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
             alt="军事观察"
           />
-<<<<<<< HEAD
           <div class="avatar-name">科技观察</div>
-=======
-          <div class="avatar-name">军事观察</div>
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
         </div>
       </div>
     </div>
@@ -250,11 +238,7 @@ const fetchDynamicList = async (isLoadMore = false) => {
           id: 4,
           title: '新一代年轻人创业图鉴：机遇与挑战并存',
           source: '创业周刊',
-<<<<<<< HEAD
             image: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-4.jpeg'
-=======
-          image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902'
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
         },
         images: [],
         likes: 156,
@@ -271,13 +255,8 @@ const fetchDynamicList = async (isLoadMore = false) => {
         content: '发现了一家隐藏在巷子里的米其林餐厅，每道菜都是艺术品！',
         news: null,
         images: [
-<<<<<<< HEAD
           'https://pic3.zhimg.com/v2-c900780a9c1f91e247ddd5d7ef4b1609_1200x500.jpg',
           'https://x0.ifengimg.com/ucms/2020_43/13232FA8FBD20C0F070E565D9BD3685F91595630_w1080_h720.jpg'
-=======
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-          'https://images.unsplash.com/photo-1512621776951-a57141f2eefd'
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
         ],
         likes: 428,
         comments: 56,

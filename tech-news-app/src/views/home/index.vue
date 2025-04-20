@@ -321,16 +321,11 @@ const viewRecommendedAuthors = () => {
 };
 
 // 查看文章详情
-<<<<<<< HEAD
 // const viewArticle = (article) => {
 //   router.push(`/article/${article.id}`);
 // };
 const viewArticle = (article) => {
   router.push(`/article`);
-=======
-const viewArticle = (article) => {
-  router.push(`/article/${article.id}`);
->>>>>>> 21591dd9b99b39840b29124e911a94251dc568f9
 };
 
 // 查看作者主页
