@@ -1,13 +1,13 @@
 minio:
-  readPath: http://192.168.33.149:9000/leadnews/
-  web-site: http://192.168.33.149:9000/leadnews/
+  readPath: http://localhost:9000/leadnews/
+  web-site: http://localhost:9000/leadnews/
 
 spring:
   application:
     name: tech-news-search # 服务名称
   profiles:
     active: dev # 开发环境配置
-    ip: 192.168.33.149  # 环境ip地址
+    ip: localhost  # 环境ip地址
   cloud:
     nacos:
       discovery: # 注册中心地址配置
