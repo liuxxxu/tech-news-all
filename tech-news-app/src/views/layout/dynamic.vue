@@ -1,128 +1,81 @@
 <template>
-  <div class="dynamic-container">
-    <!-- 顶部导航栏 -->
-    <van-nav-bar fixed class="custom-nav">
-      <template #left>
-        <div class="avatar-search">
-          <div class="avatar-wrapper" @click="goToProfile">
-            <van-image
-              round
-              width="32"
-              height="32"
-              :src="userAvatar"
-              alt="用户头像"
-              class="avatar"
-            />
-          </div>
-          <van-search
-            v-model="searchValue"
-            placeholder="搜索动态"
-            shape="round"
-            class="search-input"
-            background="transparent"
-            readonly
-            @click="goToSearch"
-          />
-        </div>
-      </template>
-      <template #right>
-        <div class="notification">
-          <van-icon name="plus" size="22" color="#3478F6" @click="handleNewPost" />
-        </div>
-      </template>
-    </van-nav-bar>
+    <div class="dynamic-container">
+        <!-- 顶部导航栏 -->
+        <van-nav-bar fixed class="custom-nav">
+            <template #left>
+                <div class="avatar-search">
+                    <div class="avatar-wrapper" @click="goToProfile">
+                        <van-image round width="32" height="32" :src="userAvatar" alt="用户头像" class="avatar" />
+                    </div>
+                    <van-search v-model="searchValue" placeholder="搜索动态" shape="round" class="search-input"
+                        background="transparent" readonly @click="goToSearch" />
+                </div>
+            </template>
+            <template #right>
+                <div class="notification">
+                    <van-icon name="plus" size="22" color="#3478F6" @click="handleNewPost" />
+                </div>
+            </template>
+        </van-nav-bar>
 
-    <!-- 头像滑动栏 -->
-    <div class="avatar-scroll-container">
-      <div class="avatar-scroll-wrapper">
-        <div class="avatar-item">
+        <!-- 头像滑动栏 -->
+        <div class="avatar-scroll-container">
+            <div class="avatar-scroll-wrapper">
+                <!-- <div class="avatar-item">
           <van-image
             round
             width="50"
             height="50"
             src="https://img01.yzcdn.cn/vant/cat.jpeg"
-            alt="我"
+            alt=""
           />
           <div class="avatar-name">我</div>
+        </div> -->
+                <div class="avatar-item">
+                    <van-image round width="50" height="50"
+                        src="https://bpic.588ku.com/back_list_pic/23/05/09/8eda9d7cb7fdbe825429685f98aa9822.jpg"
+                        alt="科技日报" />
+                    <div class="avatar-name">科技日报</div>
+                </div>
+                <div class="avatar-item">
+                    <van-image round width="50" height="50"
+                        src="https://ts1.tc.mm.bing.net/th/id/R-C.fcc7a7649912bdb4dab257256388f684?rik=4F0Kd6%2f3UDcowg&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd20111%2f762%2fw1000h562%2f20220819%2fb9a4-9a10a4a9b5f9fbddc11cea5548a84e0b.jpg&ehk=onEJRZ%2f%2f6OwdCVJ4BiLLM3anjYJ0lyBmK6%2bI0psoYvI%3d&risl=&pid=ImgRaw&r=0"
+                        alt="科技周刊" />
+                    <div class="avatar-name">财经周刊</div>
+                </div>
+                <div class="avatar-item">
+                    <van-image round width="50" height="50"
+                        src="https://ts1.tc.mm.bing.net/th/id/R-C.699f5e2f78822a1084872b9d4bdbf633?rik=GZaDv3GTjDyFZg&riu=http%3a%2f%2fimg95.699pic.com%2fphoto%2f50085%2f4215.jpg_wh860.jpg&ehk=6DXACoTdGA0DggtTFfDC6%2bdvohhlvpNcwiZnQn3%2fOIA%3d&risl=&pid=ImgRaw&r=0"
+                        alt="体育新闻" />
+                    <div class="avatar-name">体育新闻</div>
+                </div>
+                <div class="avatar-item">
+                    <van-image round width="50" height="50"
+                        src="https://img95.699pic.com/photo/40086/5739.jpg_wh860.jpg" alt="娱乐圈" />
+                    <div class="avatar-name">科技娱乐圈</div>
+                </div>
+                <!-- <div class="avatar-item">
+                    <van-image round width="50" height="50" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+                        alt="军事观察" />
+                    <div class="avatar-name">科技观察</div>
+                </div> -->
+            </div>
         </div>
-        <div class="avatar-item">
-          <van-image
-            round
-            width="50"
-            height="50"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-            alt="科技日报"
-          />
-          <div class="avatar-name">科技日报</div>
-        </div>
-        <div class="avatar-item">
-          <van-image
-            round
-            width="50"
-            height="50"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-            alt="科技周刊"
-          />
-          <div class="avatar-name">财经周刊</div>
-        </div>
-        <div class="avatar-item">
-          <van-image
-            round
-            width="50"
-            height="50"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg"
-            alt="体育新闻"
-          />
-          <div class="avatar-name">体育新闻</div>
-        </div>
-        <div class="avatar-item">
-          <van-image
-            round
-            width="50"
-            height="50"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-4.jpeg"
-            alt="娱乐圈"
-          />
-          <div class="avatar-name">科技娱乐圈</div>
-        </div>
-        <div class="avatar-item">
-          <van-image
-            round
-            width="50"
-            height="50"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
-            alt="军事观察"
-          />
-          <div class="avatar-name">科技观察</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- 关注动态列表 -->
-    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list
-        v-model:loading="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
-        <div class="dynamic-list">
-          <!-- 动态项 -->
-          <div class="dynamic-item" v-for="(item, index) in dynamicList" :key="index">
-            <!-- 用户信息 -->
-            <div class="user-info">
-              <van-image
-                width="42"
-                height="42"
-                round
-                :src="item.avatar"
-                alt="用户头像"
-              />
-              <div class="user-detail">
-                <div class="username">{{ item.username }}</div>
-                <div class="timestamp">{{ item.time }}</div>
-              </div>
-              <!-- <van-button 
+        <!-- 关注动态列表 -->
+        <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+            <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+                <div class="dynamic-list">
+                    <!-- 动态项 -->
+                    <div class="dynamic-item" v-for="(item, index) in dynamicList" :key="index">
+                        <!-- 用户信息 -->
+                        <div class="user-info">
+                            <van-image width="42" height="42" round :src="item.avatar" alt="用户头像" />
+                            <div class="user-detail">
+                                <div class="username">{{ item.username }}</div>
+                                <div class="timestamp">{{ item.time }}</div>
+                            </div>
+                            <!-- <van-button 
                 round 
                 size="small" 
                 class="follow-btn" 
@@ -131,60 +84,48 @@
               >
                 关注
               </van-button> -->
-            </div>
+                        </div>
 
-            <!-- 动态内容 -->
-            <div class="dynamic-content">
-              <div class="dynamic-text">{{ item.content }}</div>
-              
-              <!-- 新闻卡片（可点击进入详情） -->
-              <div class="news-card" v-if="item.news" @click="goToDetail(item.news.id)">
-                <div class="news-card-content">
-                  <div class="news-title">{{ item.news.title }}</div>
-                  <div class="news-source">{{ item.news.source }}</div>
+                        <!-- 动态内容 -->
+                        <div class="dynamic-content">
+                            <div class="dynamic-text">{{ item.content }}</div>
+
+                            <!-- 新闻卡片（可点击进入详情） -->
+                            <div class="news-card" v-if="item.news" @click="goToDetail(item.news.id)">
+                                <div class="news-card-content">
+                                    <div class="news-title">{{ item.news.title }}</div>
+                                    <div class="news-source">{{ item.news.source }}</div>
+                                </div>
+                                <van-image width="80" height="80" fit="cover" radius="4" :src="item.news.image"
+                                    alt="新闻图片" v-if="item.news.image" />
+                            </div>
+
+                            <!-- 图片（如果有） -->
+                            <div class="image-container" v-if="item.images && item.images.length > 0">
+                                <van-image v-for="(img, imgIndex) in item.images" :key="imgIndex" width="33%"
+                                    fit="cover" :src="img" alt="动态图片" />
+                            </div>
+                        </div>
+
+                        <!-- 互动栏 -->
+                        <div class="interaction-bar">
+                            <div class="interaction-item" @click="handleLike(item)">
+                                <van-icon :name="item.isLiked ? 'like' : 'like-o'" size="18"
+                                    :class="{ 'liked': item.isLiked }" />
+                                {{ item.likes }}
+                            </div>
+                            <div class="interaction-item" @click="handleComment(item)">
+                                <van-icon name="chat-o" size="18" /> {{ item.comments }}
+                            </div>
+                            <div class="interaction-item" @click="handleShare(item)">
+                                <van-icon name="share-o" size="18" /> {{ item.shares }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <van-image
-                  width="80"
-                  height="80"
-                  fit="cover"
-                  radius="4"
-                  :src="item.news.image"
-                  alt="新闻图片"
-                  v-if="item.news.image"
-                />
-              </div>
-              
-              <!-- 图片（如果有） -->
-              <div class="image-container" v-if="item.images && item.images.length > 0">
-                <van-image
-                  v-for="(img, imgIndex) in item.images"
-                  :key="imgIndex"
-                  width="33%"
-                  fit="cover"
-                  :src="img"
-                  alt="动态图片"
-                />
-              </div>
-            </div>
-
-            <!-- 互动栏 -->
-            <div class="interaction-bar">
-              <div class="interaction-item" @click="handleLike(item)">
-                <van-icon :name="item.isLiked ? 'like' : 'like-o'" size="18" :class="{ 'liked': item.isLiked }" /> 
-                {{ item.likes }}
-              </div>
-              <div class="interaction-item" @click="handleComment(item)">
-                <van-icon name="chat-o" size="18" /> {{ item.comments }}
-              </div>
-              <div class="interaction-item" @click="handleShare(item)">
-                <van-icon name="share-o" size="18" /> {{ item.shares }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </van-list>
-    </van-pull-refresh>
-  </div>
+            </van-list>
+        </van-pull-refresh>
+    </div>
 </template>
 
 <script setup>
@@ -230,7 +171,7 @@ const fetchDynamicList = async (isLoadMore = false) => {
       {
         id: dynamicList.value.length + 1,
         username: '创业观察',
-        avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-4.jpeg',
+        avatar: 'https://www.ahchanye.com/wp-content/uploads/2022/03/2022031817395743.png',
         time: '5小时前',
         following: true,
         content: '最新研究显示，90后、00后已成为创业主力军，他们更倾向于在新兴领域寻找机会。',
@@ -238,7 +179,7 @@ const fetchDynamicList = async (isLoadMore = false) => {
           id: 4,
           title: '新一代年轻人创业图鉴：机遇与挑战并存',
           source: '创业周刊',
-            image: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-4.jpeg'
+            image: 'https://www.ahchanye.com/wp-content/uploads/2022/03/2022031817395743.png'
         },
         images: [],
         likes: 156,
@@ -248,8 +189,8 @@ const fetchDynamicList = async (isLoadMore = false) => {
       },
       {
         id: dynamicList.value.length + 2,
-        username: '美食达人',
-        avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
+        username: '科技达人',
+          avatar: 'https://www.ncsti.gov.cn/images/kjrd_rgzn_active.png',
         time: '6小时前',
         following: true,
         content: '发现了一家隐藏在巷子里的米其林餐厅，每道菜都是艺术品！',

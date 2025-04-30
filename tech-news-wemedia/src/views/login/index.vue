@@ -115,8 +115,7 @@ const submitForm = async () => {
       message.error(res.errorMessage || '登录失败')
     }
   } catch (err) {
-    console.log('验证失败:', err)
-    message.error('登录失败，请检查输入')
+    console.log('登录失败:', err)
   }
 }
 </script>

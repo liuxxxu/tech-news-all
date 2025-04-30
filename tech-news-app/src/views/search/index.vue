@@ -124,16 +124,20 @@ const onSearch = async () => {
   }
   
   try {
-    // 添加到搜索历史
-    // await addSearchHistory(searchValue.value);
-    // 重新获取搜索历史
-    // await fetchSearchHistory();
-    
+    showLoadingToast({
+      message: '搜索中...',
+      forbidClick: true,
+      loadingType: 'spinner',
+      duration: 0
+    });
+
     // 跳转到搜索结果页
     router.push({
       path: '/search/result',
       query: { keyword: searchValue.value }
     });
+    
+    closeToast();
   } catch (error) {
     console.log('搜索失败', error);
     showToast('搜索失败，请重试');

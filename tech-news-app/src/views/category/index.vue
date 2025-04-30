@@ -79,7 +79,6 @@ const router = useRouter()
 // 我的分类列表
 const myCategories = ref([
   { id: 1, name: '推荐', removable: false },
-  { id: 2, name: '热点', removable: false },
   { id: 3, name: '科技', removable: true },
   { id: 4, name: '财经', removable: true },
   { id: 5, name: '体育', removable: true },

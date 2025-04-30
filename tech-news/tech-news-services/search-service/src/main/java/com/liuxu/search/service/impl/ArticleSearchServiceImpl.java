@@ -19,24 +19,13 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class ArticleSearchServiceImpl implements ArticleSearchService {
-    @Value("${minio.readPath}")
-    private String readPath;
-
-    @Value("${minio.web-site}")
-    private String webSite;
-
     @Autowired
     private EsService esService;
 
@@ -99,29 +88,13 @@ public class ArticleSearchServiceImpl implements ArticleSearchService {
         // 2.3 构建排序条件 builder.sort 发布时间排序 （默认： score）
         builder.sort("publishTime", SortOrder.DESC);
 
-        // 2.4 构建分页条件吧builder.from(0) builder.size(pageSize)
+        // 2.4 构建分页条件 builder.from(0) builder.size(pageSize)
         builder.size(dto.getPageSize());
+        builder.from(dto.getFromIndex());
 
         // 3. 执行搜素，并封装返回结果
         PageResponseResult result = esService.search(builder, SearchArticleVO.class,
                 SearchConstants.ARTICLE_INDEX_NAME);
-        List<SearchArticleVO> list = (List<SearchArticleVO>) result.getData();
-
-        if (!CollectionUtils.isEmpty(list)) {
-            for (SearchArticleVO searchArticleVO : list) {
-                // 3.1 staticUrl 要添加前缀
-                searchArticleVO.setStaticUrl(readPath + searchArticleVO.getStaticUrl());
-
-                // 3.2 images 要添加前缀 webSite+url,url2
-                String images = searchArticleVO.getImages();
-                if (StringUtils.isNotBlank(images)) {
-                    images = Arrays.stream(images.split(","))
-                            .map(url -> webSite + url)
-                            .collect(Collectors.joining(","));
-                    searchArticleVO.setImages(images);
-                }
-            }
-        }
         return result;
     }
 

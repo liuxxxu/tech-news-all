@@ -131,7 +131,4 @@ public class AppArticle {
      */
     private Boolean origin;
 
-    // 文章静态页 路径
-    @TableField("static_url")
-    private String staticUrl;
 }

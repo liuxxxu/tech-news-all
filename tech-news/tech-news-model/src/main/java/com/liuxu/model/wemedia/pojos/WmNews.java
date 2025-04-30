@@ -53,6 +53,12 @@ public class WmNews implements Serializable {
     private String content;
 
     /**
+     * AI总结
+     */
+    @TableField("summary")
+    private String summary;
+
+    /**
      * 封面类型
      */
     @TableField("type")
@@ -131,7 +137,7 @@ public class WmNews implements Serializable {
     //状态枚举类***
     @Alias("WmNewsStatus")
     public enum Status {
-        NORMAL((short) 0),
+        DRAFT((short) 0),
         SUBMIT((short) 1),
         FAIL((short) 2),
         ADMIN_AUTH((short) 3),

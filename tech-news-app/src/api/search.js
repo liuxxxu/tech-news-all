@@ -23,4 +23,9 @@ export const clearSearchHistory = () => {
 // 添加搜索历史
 export const addSearchHistory = (keyword) => {
   return request.post('/search/history', { keyword })
+}
+
+// 搜索文章（POST，JSON参数）
+export const searchArticlesByWords = (params) => {
+  return request.post('/search/api/search/article', params)
 } 

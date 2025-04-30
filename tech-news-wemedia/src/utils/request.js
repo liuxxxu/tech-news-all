@@ -4,6 +4,10 @@ import router from '@/router'
 import { message, Modal } from 'ant-design-vue'
 import { getUser, setUser, clearUser } from '@/utils/store'
 import { API_USERIMAGES_ADD } from '@/constants/api'
+import { useUserStore } from '@/stores'
+
+// 创建一个新的JSONbig实例，配置为将大整数转换为字符串
+const JSONbigString = JSONbig({ storeAsString: true })
 
 // 创建axios实例
 const service = axios.create({
@@ -11,8 +15,8 @@ const service = axios.create({
     timeout: 5000,
     transformResponse: [function (data) {
         try {
-            // 使用json-bigint处理返回数据，避免大整数精度丢失
-            return JSONbig.parse(data)
+            // 使用配置后的JSONbigString处理返回数据
+            return JSONbigString.parse(data)
         } catch (err) {
             return data
         }
@@ -56,7 +60,14 @@ service.interceptors.response.use(function (response) {
     return res
 }, function (error) {
     // 对响应错误做点什么
-    message.error(error.message || '网络错误')
+    if (error.response && error.response.status == 401) {
+        showToast('登录已过期，请重新登录')
+        const userStore = useUserStore()
+        userStore.clearUser()
+        router.push('/login')
+    } else {
+        showToast(error.message || '网络错误')
+    }
     return Promise.reject(error)
 })
 

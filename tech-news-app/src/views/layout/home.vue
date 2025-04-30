@@ -37,8 +37,12 @@
     <!-- 分类栏 -->
     <div class="category-bar">
       <div class="tabs-wrapper">
-        <van-tabs v-model:active="activeCategory" swipeable background="#fff" sticky>
-          <van-tab v-for="category in categories" :key="category" :title="category"></van-tab>
+        <van-tabs v-model:active="activeCategory" swipeable background="#fff" sticky @change="onCategoryChange">
+          <van-tab 
+            v-for="category in categories" 
+            :key="category.id" 
+            :title="category.name"
+          ></van-tab>
         </van-tabs>
       </div>
       <div class="more-btn" @click="goToCategoryManage">
@@ -53,6 +57,7 @@
           v-model:loading="loading"
           :finished="finished"
           finished-text="没有更多了"
+          :immediate-check="false"
           @load="onLoad"
         >
           <!-- 置顶新闻 -->
@@ -121,6 +126,7 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { showToast } from '@/utils/vant-ui'
 import { useUserStore } from '@/stores'
+import request from '@/utils/request'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -133,7 +139,8 @@ const userAvatar = computed(() => {
 // 搜索值
 const searchValue = ref('')
 
-// 当前激活的分类
+// 分类数据
+const categories = ref([])
 const activeCategory = ref(0)
 
 // 下拉刷新
@@ -144,9 +151,6 @@ const loading = ref(false)
 const finished = ref(false)
 const page = ref(1)
 const pageSize = ref(10)
-
-// 分类数据
-const categories = ['推荐', '热点', '科技', '财经', '体育', '娱乐', '军事', '国际']
 
 // 跳转到分类管理
 const goToCategoryManage = () => {
@@ -169,91 +173,55 @@ const goToProfile = () => {
 }
 
 // 新闻列表数据
-const newsList = ref([
-  {
-    id: 1,
-    title: '全球股市迎来新一轮上涨',
-    description: '受多重利好因素影响，全球主要股指普遍上涨...',
-    source: '财经周刊',
-    time: '3小时前',
-    image: 'https://s1.xiaomiev.com/activity-outer-assets/0328/images/su7/su7_1.jpg',
-    views: '8.2万',
-    likes: '1.5万'
-  },
-  {
-    id: 2,
-    title: '人工智能技术再获重大突破，新一代语言模型准确率提升50%',
-    description: '来自全球顶尖研究机构的最新研究显示，新一代语言模型在多项测试中展现出惊人的性能，准确率相比上一代提升超过50%。专家表示，这一突破将为AI应用带来革命性变化...',
-    source: '科技前沿',
-    time: '1小时前',
-    views: '12.8万',
-    likes: '2.1万'
-  },
-  {
-    id: 3,
-    title: '2024年世界杯预选赛最新战报',
-    description: '多支强队展开激烈角逐，精彩比赛不断...',
-    source: '体育新闻',
-    time: '4小时前',
-    image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2',
-    views: '15.3万',
-    likes: '3.2万'
-  },
-  {
-    id: 4,
-    title: '央行发布重要政策信号：下半年货币政策将更加灵活精准',
-    description: '央行最新货币政策例会指出，将继续实施稳健的货币政策，加大对实体经济的支持力度。专家分析认为，这意味着下半年货币政策将更具灵活性，有望为经济发展提供更有力的支持...',
-    source: '经济日报',
-    time: '2小时前',
-    views: '9.6万',
-    likes: '1.8万'
+const newsList = ref([])
+
+// 获取分类数据
+const fetchCategories = async () => {
+  try {
+    const response = await request.get('/article/api/channels/all', {})
+    const { data } = response
+    categories.value = [
+      { id: 'all', name: '全部' },
+      ...data.map(item => ({
+        id: item.id,
+        name: item.name
+      }))
+    ]
+  } catch (error) {
+    console.error('获取分类数据失败', error)
+    showToast('获取分类失败')
   }
-])
+}
 
 // 获取新闻列表数据
-const fetchNewsList = async (isLoadMore = false) => {
-  if (loading.value || finished.value) return
+const fetchNewsList = async () => {
+  if (loading.value) return
   
   loading.value = true
+  finished.value = false
   try {
-    // 模拟API请求延迟
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const currentCategory = categories.value[activeCategory.value]
+    const response = await request.post('/article/api/article/load', {
+      tag: currentCategory?.id || ''
+    })
+    const { data } = response
 
-    // 模拟新的数据
-    const mockMoreNews = [
-      {
-        id: newsList.value.length + 1,
-        title: '新能源汽车产业链全面解析',
-        description: '随着新能源汽车市场的快速发展，产业链上下游企业迎来新的发展机遇...',
-        source: '产业观察',
-        time: '5小时前',
-        image: 'https://s1.xiaomiev.com/activity-outer-assets/0328/images/su7/su7_1.jpg',
-        views: '7.8万',
-        likes: '1.3万'
-      },
-      {
-        id: newsList.value.length + 2,
-        title: '数字化转型：传统企业的机遇与挑战',
-        description: '在后疫情时代，越来越多的传统企业开始积极拥抱数字化转型...',
-        source: '商业评论1',
-        time: '6小时前',
-        views: '6.5万',
-        likes: '1.1万'
-      }
-    ]
+    const formattedData = data.map(item => ({
+      id: item.id,
+      title: item.title,
+      description: item.channelName,
+      source: item.authorName,
+      time: formatTime(item.publishTime),
+      image: item.cover,
+      views: item.views,
+      likes: item.likes,
+      publishTime: item.publishTime
+    }))
 
-    if (isLoadMore) {
-      newsList.value.push(...mockMoreNews)
-    } else {
-      newsList.value = mockMoreNews
-    }
-
-    // 模拟数据加载完成的情况
-    if (newsList.value.length >= 10) {
+    newsList.value = formattedData
+    if (data.length < 10) {
       finished.value = true
     }
-    
-    page.value += 1
   } catch (error) {
     console.error('获取新闻列表失败', error)
     showToast('加载失败，请重试')
@@ -262,30 +230,139 @@ const fetchNewsList = async (isLoadMore = false) => {
   }
 }
 
-// 刷新数据
+// 加载更多数据
+const loadMoreData = async () => {
+  if (finished.value) return
+  
+  try {
+    const minTime = newsList.value[newsList.value.length - 1]?.publishTime
+    const currentCategory = categories.value[activeCategory.value]
+    const response = await request.post('/article/api/article/loadmore', {
+      minTime: minTime || '',
+      tag: currentCategory?.id || ''
+    })
+    const { data } = response
+
+    if (data.length === 0) {
+      finished.value = true
+      return
+    }
+
+    const formattedData = data.map(item => ({
+      id: item.id,
+      title: item.title,
+      description: item.channelName,
+      source: item.authorName,
+      time: formatTime(item.publishTime),
+      image: item.cover,
+      views: item.views,
+      likes: item.likes,
+      publishTime: item.publishTime
+    }))
+
+    newsList.value.push(...formattedData)
+    
+    if (data.length < 10) {
+      finished.value = true
+    }
+  } catch (error) {
+    console.error('获取更多数据失败', error)
+    showToast('加载失败，请重试')
+  }
+}
+
+// 加载最新数据
+const loadNewData = async () => {
+  try {
+    const maxTime = newsList.value[0]?.publishTime
+    const currentCategory = categories.value[activeCategory.value]
+    const response = await request.post('/article/api/article/loadnew', {
+      maxTime: maxTime || '',
+      tag: currentCategory?.id || ''
+    })
+    const { data } = response
+
+    const formattedData = data.map(item => ({
+      id: item.id,
+      title: item.title,
+      description: item.channelName,
+      source: item.authorName,
+      time: formatTime(item.publishTime),
+      image: item.cover,
+      views: item.views,
+      likes: item.likes,
+      publishTime: item.publishTime
+    }))
+
+    if (formattedData.length > 0) {
+      newsList.value = [...formattedData, ...newsList.value]
+    }
+    return data.length > 0
+  } catch (error) {
+    console.error('获取最新数据失败', error)
+    showToast('刷新失败，请重试')
+    return false
+  }
+}
+
+// 分类切换处理
+const onCategoryChange = () => {
+  newsList.value = [] // 清空当前列表
+  finished.value = false // 重置加载状态
+  fetchNewsList() // 重新加载数据
+}
+
+// 刷新数据（下拉刷新）
 const onRefresh = async () => {
   try {
-    // 重置分页
-    page.value = 1
-    finished.value = false
-    await fetchNewsList()
-    showToast('刷新成功')
-  } catch (error) {
-    console.error('刷新失败', error)
-    showToast('刷新失败，请重试')
+    // 如果列表为空，直接获取初始数据
+    if (!newsList.value.length) {
+      await fetchNewsList()
+      showToast('刷新成功')
+      return
+    }
+    
+    const hasNewData = await loadNewData()
+    if (hasNewData) {
+      showToast('刷新成功')
+    } else {
+      showToast('暂无新数据')
+    }
   } finally {
     refreshing.value = false
   }
 }
 
-// 加载更多
-const onLoad = () => {
-  fetchNewsList(true)
+// 加载更多（上滑加载）
+const onLoad = async () => {
+  loading.value = true
+  await loadMoreData()
+  loading.value = false
+}
+
+// 格式化时间
+const formatTime = (timeStr) => {
+  const date = new Date(timeStr)
+  const now = new Date()
+  const diff = now - date
+  const minutes = Math.floor(diff / 60000)
+  const hours = Math.floor(minutes / 60)
+  const days = Math.floor(hours / 24)
+
+  if (days > 0) return `${days}天前`
+  if (hours > 0) return `${hours}小时前`
+  if (minutes > 0) return `${minutes}分钟前`
+  return '刚刚'
 }
 
 // 页面加载时获取数据
 onMounted(async () => {
-  await fetchNewsList()
+  loading.value = true
+  await Promise.all([
+    fetchCategories(),
+    fetchNewsList()
+  ])
+  loading.value = false
 })
 </script>
 

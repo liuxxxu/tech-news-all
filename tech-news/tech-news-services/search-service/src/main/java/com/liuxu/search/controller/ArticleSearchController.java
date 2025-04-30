@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/article/search")
+@RequestMapping("/api/search")
 public class ArticleSearchController{
 
     @Autowired
     private ArticleSearchService articleSearchService;
 
-    @PostMapping("/search")
+    @PostMapping("/article")
     public ResponseResult search(@RequestBody UserSearchDTO userSearchDto) {
         // 文章搜索接口
         return articleSearchService.search(userSearchDto);

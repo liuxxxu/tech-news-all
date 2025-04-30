@@ -204,7 +204,7 @@ const handleView = (record) => {
   router.push({
     path: '/auth/detail',
     query: {
-      id: record.id
+      record: JSON.stringify(record)
     }
   })
 }

@@ -29,7 +29,8 @@
       <!-- 数据统计 -->
       <div class="user-stats">
         <div class="stat-item" @click="goToSpace">
-          <span class="count">{{ userInfo.dynamicCount }}</span>
+          <!-- <span class="count">{{ userInfo.dynamicCount }}</span> -->
+          <span class="count"> 2 </span>
           <span class="label">动态</span>
         </div>
         <div class="stat-item" @click="goToFollows(0)">
@@ -121,7 +122,7 @@ const userInfo = computed(() => {
 // 获取用户统计数据
 const fetchUserCounts = async () => {
   try {
-    const res = await request.get('/api/user/count')
+    const res = await request.get('user/api/user/count')
     if (res.code === 0) {
       counts.value = {
         ...counts.value,

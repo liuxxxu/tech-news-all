@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class SearchArticleVO {
+public class ArticleVO {
     // 文章id
     @EsId
     @JsonSerialize(using = ToStringSerializer.class)
@@ -25,4 +25,8 @@ public class SearchArticleVO {
     private String authorName;
     // 作者头像
     private String authorAvatar;
+    // 文章内容
+    private String content;
+    // AI 总结
+    private String summary;
 }

@@ -187,7 +187,7 @@ const pagination = reactive({
 const fansData = ref([
   {
     id: 1,
-    date: '2023-03-15',
+    date: '2024-04-15',
     total: 12836,
     increment: 125,
     loss: 32,
@@ -198,7 +198,7 @@ const fansData = ref([
   },
   {
     id: 2,
-    date: '2023-03-14',
+    date: '2024-04-14',
     total: 12711,
     increment: 98,
     loss: 41,
@@ -209,7 +209,7 @@ const fansData = ref([
   },
   {
     id: 3,
-    date: '2023-03-13',
+    date: '2024-04-13',
     total: 12613,
     increment: 156,
     loss: 28,
@@ -220,7 +220,7 @@ const fansData = ref([
   },
   {
     id: 4,
-    date: '2023-03-12',
+    date: '2024-04-12',
     total: 12457,
     increment: 76,
     loss: 53,
@@ -231,7 +231,7 @@ const fansData = ref([
   },
   {
     id: 5,
-    date: '2023-03-11',
+    date: '2024-04-11',
     total: 12381,
     increment: -23,
     loss: 87,

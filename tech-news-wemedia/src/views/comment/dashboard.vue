@@ -216,7 +216,7 @@ const recentComments = [
     username: '张三',
     avatar: 'https://joeschmoe.io/api/v1/random',
     content: '这篇文章写得非常好，内容深入浅出，很容易理解。',
-    time: '2023-03-15 14:30',
+    time: '2024-04-15 14:30',
     article: '5G技术将如何改变我们的生活？',
     status: '已审核'
   },
@@ -225,7 +225,7 @@ const recentComments = [
     username: '李四',
     avatar: 'https://joeschmoe.io/api/v1/jane',
     content: '感谢作者的分享，学到了很多新知识。',
-    time: '2023-03-15 13:25',
+    time: '2024-04-15 13:25',
     article: '人工智能在医疗领域的应用前景',
     status: '待审核'
   },
@@ -234,7 +234,7 @@ const recentComments = [
     username: '王五',
     avatar: 'https://joeschmoe.io/api/v1/john',
     content: '文章有些观点我不太认同，希望作者能进一步解释。',
-    time: '2023-03-15 11:40',
+    time: '2024-04-15 11:40',
     article: '区块链技术简介：原理与应用',
     status: '已审核'
   },
@@ -243,7 +243,7 @@ const recentComments = [
     username: '赵六',
     avatar: 'https://joeschmoe.io/api/v1/jack',
     content: '非常精彩的分析，对我帮助很大。',
-    time: '2023-03-15 10:18',
+    time: '2024-04-15 10:18',
     article: '云计算服务对比：AWS vs Azure vs Google Cloud',
     status: '已审核'
   },
@@ -252,7 +252,7 @@ const recentComments = [
     username: '钱七',
     avatar: 'https://joeschmoe.io/api/v1/jill',
     content: '这篇文章内容太浅显了，希望能有更深入的分析。',
-    time: '2023-03-15 09:05',
+    time: '2024-04-15 09:05',
     article: '网络安全入门：保护个人信息的基本策略',
     status: '待审核'
   }

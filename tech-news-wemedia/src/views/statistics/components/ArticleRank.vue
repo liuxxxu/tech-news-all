@@ -126,8 +126,8 @@ const fetchRankData = async (type) => {
     for (let i = 0; i < 10; i++) {
       mockData.push({
         id: i + 1,
-        title: `文章标题 ${i + 1}：这是一篇关于前端技术的文章，探讨了Vue3的新特性`,
-        publishTime: '2023-03-30 15:30',
+        title: `文章标题：这是一篇关于前端技术的文章，探讨了Vue3的新特性`,
+        publishTime: '2025-04-20 15:30',
         category: '前端开发',
         readCount: Math.floor(Math.random() * 1000) + 500,
         commentCount: Math.floor(Math.random() * 100) + 10,

@@ -23,7 +23,7 @@ public class AppCollection implements Serializable {
      */
     private Long articleId;
     /**
-     * 点赞内容类型
+     * 收藏内容类型
      * 0文章
      * 1动态
      */

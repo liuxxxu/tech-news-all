@@ -15,10 +15,3 @@ spring:
         namespace: ${spring.profiles.active}
         name: ${spring.application.name} # data-id名称
         file-extension: yml # data-id 后缀
-        shared-configs: # 共享配置
-          - data-id: share-feign.yml # 配置文件名-Data Id
-            group: DEFAULT_GROUP   # 默认为DEFAULT_GROUP
-            refresh: false   # 是否动态刷新，默认为false
-#          - data-id: share-seata.yml # 配置文件名-Data Id
-#            group: DEFAULT_GROUP   # 默认为DEFAULT_GROUP
-#            refresh: false   # 是否动态刷新，默认为fals

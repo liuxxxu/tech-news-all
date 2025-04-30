@@ -110,15 +110,15 @@ const pageSize = ref(10)
 const dynamicList = ref([
   {
     id: 1,
-    username: '张三',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e',
+    username: '刘绪',
+    avatar: 'http://localhost:9000/tech-news/avatar/2025/04/22/s8qj1aps_1745283862205.png',
     time: '2小时前',
     content: '分享一篇关于新能源技术的报道，这项突破可能改变未来能源格局！',
     news: {
       id: 1,
       title: '重大突破：科学家发现新型能源技术',
       source: '科技日报',
-      image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e'
+        image: 'https://img.36krcdn.com/hsossms/20250411/v2_a3c1ef7f653a44019dd66cda6c1dd944@6205347_oswg28513oswg640oswg393_img_000?x-oss-process=image/format,jpg/interlace,1'
     },
     images: [],
     likes: 256,
@@ -128,15 +128,14 @@ const dynamicList = ref([
   },
   {
     id: 2,
-    username: '张三',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e',
+    username: '刘绪',
+      avatar: 'http://localhost:9000/tech-news/avatar/2025/04/22/s8qj1aps_1745283862205.png',
     time: '昨天',
     content: '周末去了城郊的新开发区，拍到了这些美丽的风景，分享给大家！',
     news: null,
     images: [
-      'https://images.unsplash.com/photo-1516483638261-f4dbaf036963',
-      'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9',
-      'https://images.unsplash.com/photo-1528127269322-539801943592'
+      'https://bpic.588ku.com/back_origin_min_pic/22/08/05/3dde699eea57007d31a3be162a2da08c.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+      'https://bpic.588ku.com/back_origin_min_pic/22/08/05/3dde699eea57007d31a3be162a2da08c.jpg!/fw/750/quality/99/unsharp/true/compress/true',
     ],
     likes: 312,
     comments: 45,

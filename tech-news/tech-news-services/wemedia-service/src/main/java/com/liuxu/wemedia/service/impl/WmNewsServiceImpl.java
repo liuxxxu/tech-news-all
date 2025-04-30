@@ -19,7 +19,6 @@ import com.liuxu.model.wemedia.dtos.NewsAuthDTO;
 import com.liuxu.model.wemedia.dtos.WmNewsDTO;
 import com.liuxu.model.wemedia.dtos.WmNewsPageReqDTO;
 import com.liuxu.model.wemedia.pojos.WmNews;
-import com.liuxu.model.wemedia.pojos.WmNewsMaterial;
 import com.liuxu.model.wemedia.pojos.WmUser;
 import com.liuxu.model.wemedia.vos.WmNewsVO;
 import com.liuxu.wemedia.mapper.WmMaterialMapper;
@@ -172,31 +171,23 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         // 设置用户ID
         wmNews.setUserId(userId);
         wmNews.setAuthorName(wmUser.getName());
+        wmNews.setId(null);
+
+        Short statusOld = dto.getStatusOld();
+        if (statusOld != null && statusOld.equals(WmNews.Status.DRAFT.getCode())) {
+            // 删除原草稿
+            removeById(dto.getId());
+        }
 
         // 3. 保存
         saveWmNews(wmNews);
 
-        // 如果是提交，发送待审核消息
-        rabbitTemplate.convertAndSend(NewsAutoScanConstants.WM_NEWS_AUTO_SCAN_QUEUE, wmNews.getId());
-        log.info("成功发送待审核消息,待审核的文章id为:{}", wmNews.getId());
+        if (wmNews.getStatus().equals(WmNews.Status.SUBMIT.getCode())) {
+            // 如果是提交，发送待审核消息
+            rabbitTemplate.convertAndSend(NewsAutoScanConstants.WM_NEWS_AUTO_SCAN_QUEUE, wmNews.getId());
+            log.info("成功发送待审核消息,待审核的文章id为:{}", wmNews.getId());
+        }
         return ResponseResult.successResult();
-
-
-        // // 3.1 抽取文章中关联的图片路径
-        // List<String> materials = parseContentImages(dto.getContent());
-        //
-        // // 3.2 关联文章内容中的图片和素材关系
-        // if (!CollectionUtils.isEmpty(materials)) {
-        //     saveRelativeInfo(materials, wmNews.getId(), WemediaConstants.WM_CONTENT_REFERENCE);
-        // }
-        //
-        // // 3.3 关联文章封面中的图片和素材关系 封面可能是选择自动或者是无图
-        // saveRelativeInfoForCover(dto, materials, wmNews);
-
-        // 3.4 发送待审核消息
-        // rabbitTemplate.convertAndSend(NewsAutoScanConstants.WM_NEWS_AUTO_SCAN_QUEUE, wmNews.getId());
-        // log.info("成功发送待审核消息,待审核的文章id为:{}", wmNews.getId());
-        // return ResponseResult.successResult();
     }
 
     /**
@@ -243,15 +234,10 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         // 3.判断当前文章的状态 status==9 enable == 1
         if (wmNews.getStatus().equals(WmNews.Status.PUBLISHED.getCode())
                 && wmNews.getEnable().equals(WemediaConstants.WM_NEWS_UP)) {
-            CustException.throwException(AppHttpCodeEnum.DATA_NOT_EXIST, "文章已发布，不能删除");
+            CustException.throwException(AppHttpCodeEnum.DATA_NOT_EXIST, "文章已上架，不能删除");
         }
 
-        // 4. 去除素材与文章的关系
-        LambdaQueryWrapper<WmNewsMaterial> query = Wrappers.<WmNewsMaterial>lambdaQuery();
-        query.eq(WmNewsMaterial::getNewsId, wmNews.getId());
-        wmNewsMaterialMapper.delete(query);
-
-        // 5. 删除文章
+        // 4. 删除文章
         removeById(wmNews.getId());
         return ResponseResult.successResult();
     }
@@ -543,10 +529,6 @@ public class WmNewsServiceImpl extends ServiceImpl<WmNewsMapper, WmNews> impleme
         } else {
             // 修改操作
             wmNews.setUpdatedTime(new Date());
-            // 先删除当前文章和素材关系表中的数据
-            // LambdaQueryWrapper<WmNewsMaterial> wrapper = Wrappers.<WmNewsMaterial>lambdaQuery();
-            // wrapper.eq(WmNewsMaterial::getNewsId, wmNews.getId());
-            // wmNewsMaterialMapper.delete(wrapper);
             updateById(wmNews);
         }
     }

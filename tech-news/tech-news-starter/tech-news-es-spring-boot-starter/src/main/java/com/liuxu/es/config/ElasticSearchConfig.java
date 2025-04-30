@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "elasticsearch")
-@ComponentScan("com.liuxu.es.service.impl")
+@ComponentScan("com.liuxu.es.service")
 public class ElasticSearchConfig {
     private String host;
 

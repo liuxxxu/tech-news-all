@@ -244,7 +244,7 @@ public class EsServiceImpl<T> implements EsService<T> {
             }
             result.setTotal(total);
             result.setData(list);
-
+            result.setCode(0);
             return result;
         } catch (Exception e) {
             throw new RuntimeException("查询文档失败！", e);
@@ -256,7 +256,7 @@ public class EsServiceImpl<T> implements EsService<T> {
      * @param t
      * @param hit
      */
-    private void handleHighlight(T t, SearchHit hit) throws InvocationTargetException, IllegalAccessException{
+    private void handleHighlight(T t, SearchHit hit) throws InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         Map<String, HighlightField> highlightFields = hit.getHighlightFields();
         for (HighlightField highlightField : highlightFields.values()) {
 //            获取高亮字段名称
@@ -267,10 +267,10 @@ public class EsServiceImpl<T> implements EsService<T> {
 
 //            获取字节码
             BeanUtils.setProperty(t, fieldName, highlightValue);
-            /*Class<?> tClass = t.getClass();
+            Class<?> tClass = t.getClass();
             Field field = tClass.getDeclaredField(fieldName);
             field.setAccessible(true);
-            field.set(t, highlightValue);*/
+            field.set(t, highlightValue);
         }
     }
 

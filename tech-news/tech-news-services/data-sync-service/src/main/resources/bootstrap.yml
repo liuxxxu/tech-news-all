@@ -14,7 +14,3 @@ spring:
         namespace: ${spring.profiles.active}
         name: ${spring.application.name} # data-id名称
         file-extension: yml # data-id 后缀
-        shared-configs: # 共享配置
-          - data-id: share-feign.yml
-            group: DEFAULT_GROUP
-            refresh: false

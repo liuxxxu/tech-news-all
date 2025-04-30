@@ -23,6 +23,5 @@ public class WemediaNewsAutoListener {
     public void handlerAutoScanMsg(String newsId) {
         log.info("接收到自动审核消息 文章id:{} 自动审核开始===>", newsId);
         wmNewsAutoScanService.autoScanWmNews(Long.valueOf(newsId));
-        log.info("接收到自动审核消息 文章id:{} 自动审核完毕===>", newsId);
     }
 }

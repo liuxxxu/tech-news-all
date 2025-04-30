@@ -78,14 +78,11 @@
                   v-model:value="formData.channelId"
                   placeholder="请选择频道"
                   style="width: 100%"
+                  :options="channelList.map(item => ({
+                    value: item.id,
+                    label: item.name
+                  }))"
                 >
-                  <a-select-option
-                    v-for="item in channelList"
-                    :key="item.id"
-                    :value="item.id"
-                  >
-                    {{ item.name }}
-                  </a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -201,12 +198,13 @@ const editorConfig = {
 const formData = reactive({
   id: null,
   title: '',
-  channelId: '',
+  channelId: undefined,
   labels: '',
-  type: '-1', // -1:无封面, 1:有封面
-  publishTime: null,
+  type: '-1',
+  publishTime: null,  // 默认为 null，不从后端获取
   images: '',
-  content: ''
+  content: '',
+  statusOld: undefined
 })
 
 // 表单校验规则
@@ -340,8 +338,14 @@ const handleEditorChange = (editor) => {
 const getChannelsList = async () => {
   try {
     const res = await getChannels()
-    channelList.value = res.data || []
+    if (res.code === 0) {
+      channelList.value = res.data || []
+      console.log('频道列表:', channelList.value) // 添加日志
+    } else {
+      message.error(res.errorMessage || '获取频道列表失败')
+    }
   } catch (error) {
+    console.error('获取频道列表失败:', error)
     message.error('获取频道列表失败')
   }
 }
@@ -356,8 +360,8 @@ const getArticleDetail = async (id) => {
       formData.title = res.data.title
       formData.channelId = res.data.channelId
       formData.labels = res.data.labels
-      formData.type = res.data.type === null ? '-1' : res.data.type.toString()
-      formData.publishTime = res.data.publishTime ? dayjs(res.data.publishTime) : null
+      formData.type = res.data.type === 0 ? '-1' : '1'
+      formData.statusOld = res.data.status
       
       // 内容
       if (res.data.content) {
@@ -367,7 +371,6 @@ const getArticleDetail = async (id) => {
       
       // 封面图片
       if (res.data.cover) {
-        formData.type = '1'
         singleCover.value = res.data.cover
       }
     } else {
@@ -464,14 +467,16 @@ const saveArticle = async (isDraft) => {
     
     // 准备要提交的数据
     const submitData = {
+      id: formData.id,
       title: formData.title,
       channelId: formData.channelId,
       labels: formData.labels || '',
       publishTime: formData.publishTime ? formData.publishTime.format('YYYY-MM-DD HH:mm:ss') : dayjs().format('YYYY-MM-DD HH:mm:ss'),
       content: formData.content,
-      type: parseInt(formData.type),  // 转换为数字：-1 -> 0, 1 -> 1
+      type: parseInt(formData.type),
       cover: formData.type === '1' ? singleCover.value : '',
-      status: isDraft ? 0 : 1  // 草稿为0，提交为1
+      status: isDraft ? 0 : 1,
+      statusOld: formData.statusOld
     }
 
     // 如果是无封面，将 type 从 -1 改为 0
@@ -549,6 +554,7 @@ const isFormValid = computed(() => {
 watch([() => formData.title, () => formData.channelId, () => formData.content, () => formData.type, singleCover], () => {
   // 当表单数据变化时，isFormValid 会自动重新计算
   console.log('表单验证状态:', isFormValid.value)
+  console.log('当前选择的频道ID:', formData.channelId) // 添加日志
 })
 
 // 初始化

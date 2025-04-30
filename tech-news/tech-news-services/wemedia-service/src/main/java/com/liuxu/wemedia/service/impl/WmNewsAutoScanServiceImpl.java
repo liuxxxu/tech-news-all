@@ -26,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -95,10 +96,7 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
             return;
         }
 
-        // 8. 将文章的状态改为8 自动审核通过
-        updateWmNews(WmNews.Status.SUCCESS.getCode(), "AI审核通过", wmNews);
-
-        // 9. 根据文章的发布时间，发送延迟消息，用于定时发布文章
+        // 7. 根据文章的发布时间，发送延迟消息，用于定时发布文章
         // 获取发布时间
         Date publishTime = wmNews.getPublishTime();
         long nowTime = System.currentTimeMillis();
@@ -155,6 +153,10 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
                 case "Yes":
                     // 成功
                     flag = true;
+                    String summary = scanResult.getString("summary");
+                    // 进行编码
+                    summary = new String(summary.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+                    updateWmNews(WmNews.Status.SUCCESS.getCode(), "AI审核通过", summary, wmNews);
                     break;
                 default:
                     // 人工
@@ -217,6 +219,13 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
      * @param reason
      * @param wmNews
      */
+    private void updateWmNews(Short status, String reason, String summary, WmNews wmNews) {
+        wmNews.setStatus(status);
+        wmNews.setReason(reason);
+        wmNews.setSummary(summary);
+        wmNewsMapper.updateById(wmNews);
+    }
+
     private void updateWmNews(Short status, String reason, WmNews wmNews) {
         wmNews.setStatus(status);
         wmNews.setReason(reason);

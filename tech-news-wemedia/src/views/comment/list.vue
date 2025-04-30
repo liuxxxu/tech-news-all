@@ -330,9 +330,9 @@ const commentList = ref([
   {
     id: 1,
     content: '这篇文章写得非常好，内容深入浅出，很容易理解。希望能看到更多类似的高质量文章！',
-    username: '张三',
+    username: '吴若萌',
     avatar: 'https://joeschmoe.io/api/v1/random',
-    time: '2023-03-15 14:30',
+    time: '2025-04-15 14:30',
     article: '5G技术将如何改变我们的生活？',
     status: 'approved',
     sentiment: 'positive'
@@ -340,9 +340,9 @@ const commentList = ref([
   {
     id: 2,
     content: '感谢作者的分享，学到了很多新知识。不过有些观点我不太理解，希望能够进一步说明。',
-    username: '李四',
+    username: '宋涛',
     avatar: 'https://joeschmoe.io/api/v1/jane',
-    time: '2023-03-15 13:25',
+    time: '2025-04-15 13:25',
     article: '人工智能在医疗领域的应用前景',
     status: 'pending',
     sentiment: 'neutral'
@@ -350,9 +350,9 @@ const commentList = ref([
   {
     id: 3,
     content: '这篇文章太浅显了，完全没有技术深度，浪费了我的时间。建议作者多做研究再发表文章。',
-    username: '王五',
+    username: '蔡丽',
     avatar: 'https://joeschmoe.io/api/v1/john',
-    time: '2023-03-15 11:40',
+    time: '2025-04-15 11:40',
     article: '区块链技术简介：原理与应用',
     status: 'approved',
     sentiment: 'negative'
@@ -360,9 +360,9 @@ const commentList = ref([
   {
     id: 4,
     content: '文章内容很好，但有几处错误需要指出：1. AWS不是唯一提供这项服务的平台；2. Azure的定价策略描述不准确。',
-    username: '赵六',
+    username: '曹欣欣',
     avatar: 'https://joeschmoe.io/api/v1/jack',
-    time: '2023-03-15 10:18',
+    time: '2025-04-15 10:18',
     article: '云计算服务对比：AWS vs Azure vs Google Cloud',
     status: 'approved',
     sentiment: 'neutral'
@@ -370,9 +370,9 @@ const commentList = ref([
   {
     id: 5,
     content: '作为一名网络安全从业者，我认为这篇文章对安全风险的认识还是很到位的，值得推荐给入门者阅读。',
-    username: '钱七',
+    username: '戴苒溪',
     avatar: 'https://joeschmoe.io/api/v1/jill',
-    time: '2023-03-15 09:05',
+    time: '2025-04-15 09:05',
     article: '网络安全入门：保护个人信息的基本策略',
     status: 'pending',
     sentiment: 'positive'
@@ -380,9 +380,9 @@ const commentList = ref([
   {
     id: 6,
     content: '作者对技术的理解存在偏差，文中说法与行业最新标准不符，建议更新内容。',
-    username: '孙八',
+    username: '魏刚',
     avatar: 'https://joeschmoe.io/api/v1/jake',
-    time: '2023-03-14 16:45',
+    time: '2025-04-14 16:45',
     article: '5G技术将如何改变我们的生活？',
     status: 'rejected',
     sentiment: 'negative'

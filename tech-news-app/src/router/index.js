@@ -70,26 +70,11 @@ const routes = [
             title: '搜索结果'
         }
     },
-    // {
-    //     path: '/article/:id',
-    //     name: 'ArticleDetail',
-    //     component: () => import('@/views/article/detail.vue'),
-    //     meta: {
-    //         title: '文章详情'
-    //     }
-    // },
-    {
-        path: '/article',
-        name: 'ArticleDetail',
-        component: () => import('@/views/detail/index.vue'),
-        meta: {
-            title: '文章详情'
-        }
-    },
+
     {
         path: '/article/:id',
         name: 'ArticleDetail',
-        component: () => import('@/views/article/detail.vue'),
+        component: () => import('@/views/detail/index.vue'),
         meta: {
             title: '文章详情'
         }

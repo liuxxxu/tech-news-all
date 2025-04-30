@@ -111,27 +111,25 @@ const formatTime = (time) => {
 
 // 生命周期钩子
 onMounted(() => {
-  // 模拟数据
-  const mockData = {
-    id: '1',
-    userId: '10086',
-    name: '张三',
-    idno: '110101199001011234',
-      frontImage: 'https://ts1.tc.mm.bing.net/th/id/R-C.1765bedbe598b988431060085e8ee01b?rik=kinuLKVCaee5dA&riu=http%3a%2f%2fimage.woshipm.com%2fwp-files%2f2016%2f06%2f210e4e315fcdcb405aae62ee466dfa4e_r-1.png&ehk=zgS4tmAZpjOJcXVVUwApxOs7vI5YEVKrKXGEg1WK4WM%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1',
-      backImage: 'https://ts1.tc.mm.bing.net/th/id/R-C.1765bedbe598b988431060085e8ee01b?rik=kinuLKVCaee5dA&riu=http%3a%2f%2fimage.woshipm.com%2fwp-files%2f2016%2f06%2f210e4e315fcdcb405aae62ee466dfa4e_r-1.png&ehk=zgS4tmAZpjOJcXVVUwApxOs7vI5YEVKrKXGEg1WK4WM%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1',
-    holdImage: 'https://img.zcool.cn/community/01a9445d54c80da801211d53301054.jpg',
-    liveImage: 'https://img.zcool.cn/community/01a9445d54c80da801211d53301054.jpg',
-    status: 1,
-    reason: '',
-    createdTime: '2024-03-20 14:30:00'
+  const record = route.query.record
+  if (!record) {
+    message.error('认证信息不能为空')
+    router.back()
+    return
   }
-
-  // 将模拟数据赋值给 authInfo
-  Object.keys(authInfo).forEach(key => {
-    if (key in mockData) {
-      authInfo[key] = mockData[key]
-    }
-  })
+  
+  try {
+    const data = JSON.parse(record)
+    Object.keys(authInfo).forEach(key => {
+      if (key in data) {
+        authInfo[key] = data[key]
+      }
+    })
+  } catch (error) {
+    console.error('解析认证信息失败:', error)
+    message.error('解析认证信息失败')
+    router.back()
+  }
 })
 
 // 返回上一页

@@ -12,9 +12,9 @@
             <!-- 新闻来源和关注 -->
             <div class="news-author">
                 <div class="author-info">
-                    <van-image round width="40" height="40" :src="newsDetail.sourceIcon" alt="来源图标" />
+                    <van-image round width="40" height="40" :src="newsDetail.authorAvatar" alt="来源图标" />
                     <div class="author-detail">
-                        <div class="author-name">{{ newsDetail.source }}</div>
+                        <div class="author-name">{{ newsDetail.authorName }}</div>
                         <div class="publish-time">{{ newsDetail.time }}</div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <span class="ai-title">AI文摘</span>
                 </div>
                 <div class="ai-content">
-                    {{ newsDetail.aiSummary }}
+                    {{ displayedSummary }}
                 </div>
                 <div class="ai-footer">由AI智能生成，仅供参考</div>
                 <div class="like-btn" @click="handleAiLike">
@@ -88,19 +88,16 @@
             <div class="comment-input">
                 <van-field v-model="commentText" placeholder="写评论..." class="input-field" />
             </div>
+            <van-button round type="primary" size="small" class="comment-btn">评论</van-button>
 
             <div class="action-buttons">
-                <div class="action-btn">
-                    <van-icon name="good-job-o" size="24" />
-                    <span>{{ newsDetail.likes }}</span>
+                <div class="action-btn" @click="handleLike">
+                    <van-icon :name="isLiked ? 'good-job' : 'good-job-o'" :class="{ 'active': isLiked }" size="24" />
+                    <span :class="{ 'active': isLiked }">{{ newsDetail.likes }}</span>
                 </div>
-                <div class="action-btn">
-                    <van-icon name="star-o" size="24" />
-                    <span>{{ newsDetail.collects }}</span>
-                </div>
-                <div class="action-btn">
-                    <van-icon name="share-o" size="24" />
-                    <span>{{ newsDetail.shares }}</span>
+                <div class="action-btn" @click="handleCollect">
+                    <van-icon :name="isCollected ? 'star' : 'star-o'" :class="{ 'active': isCollected }" size="24" />
+                    <span :class="{ 'active': isCollected }">{{ newsDetail.collects }}</span>
                 </div>
             </div>
         </div>
@@ -110,13 +107,79 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { showSuccessToast } from '../../utils/vant-ui'
+import { showSuccessToast, showToast } from '../../utils/vant-ui'
+import request from '../../utils/request'
 
 const router = useRouter()
 const route = useRoute()
 
 const commentText = ref('')
 const aiLikeText = ref('有帮助')
+const displayedSummary = ref('')
+const isLiked = ref(false)
+const isCollected = ref(false)
+const newsDetail = ref({
+  sourceIcon: '',
+  source: '',
+  time: '',
+  title: '',
+  summary: '',
+  cover: '',
+  content: '',
+  tags: [],
+  comments: [],
+  likes: 0,
+  collects: 0,
+  shares: 0,
+  authorName: '',
+  authorAvatar: '/src/assets/portrait.png'
+})
+
+// 流式输出AI文摘
+const streamSummary = async (text) => {
+  displayedSummary.value = ''
+  const chars = text.split('')
+  for (let char of chars) {
+    displayedSummary.value += char
+    await new Promise(resolve => setTimeout(resolve, 50)) // 每个字50ms的延迟
+  }
+}
+
+// 获取新闻详情
+const fetchNewsDetail = async () => {
+  try {
+    const response = await request.get(`/article/api/article/${route.params.id}`)
+    const { data } = response
+    // 确保数据结构正确
+    newsDetail.value = {
+      sourceIcon: data.authorAvatar || '/src/assets/portrait.png',
+      source: data.authorName || '',
+      time: data.time || '',
+      title: data.title || '',
+      summary: data.summary || '',
+      cover: data.cover || '',
+      content: data.content || '',
+      tags: Array.isArray(data.tags) ? data.tags : [],
+      comments: Array.isArray(data.comments) ? data.comments : [],
+      likes: Number(data.likes) || 0,
+      collects: Number(data.collects) || 0,
+      shares: Number(data.shares) || 0,
+      authorName: data.authorName || '',
+      authorAvatar: data.authorAvatar || '/src/assets/portrait.png'
+    }
+    // 开始流式输出摘要
+    if (data.summary) {
+      streamSummary(data.summary)
+    }
+  } catch (error) {
+    console.error('获取新闻详情失败', error)
+    showToast('获取新闻详情失败')
+  }
+}
+
+onMounted(() => {
+  fetchNewsDetail()
+})
 
 const onBackClick = () => {
     router.back()
@@ -140,54 +203,31 @@ const handleAiLike = () => {
     showSuccessToast('感谢您的支持！')
 }
 
-// 假数据模拟
-const newsDetail = ref({
-    id: 1,
-    title: '重大突破：科学家发现新型能源技术，有望解决全球能源危机',
-    source: '科技日报',
-    sourceIcon: 'https://img01.yzcdn.cn/vant/cat.jpeg',
-    time: '2小时前',
-    cover: 'https://ugc-img.ifengimg.com/img/2021/11/26/fd1a98d4-2585-426b-9b91-4e6fb9819598_w1920_h1200.jpeg',
-    aiSummary: '该新闻报道了一项可能颠覆现有能源体系的科技成果。科学家们研发出一种新型能源技术，具备高达95%以上的能量转换效率，并承诺实现零碳排放。这一技术不仅具备低成本、高寿命的优势，还具备良好的环保性。预计5年内实现商业化，有望推动清洁能源变革，降低全球能源成本。',
-    content: `
-    <p>近日，一项重大科学突破引起了全球科技界的广泛关注。在一个跨国研究团队的努力下，科学家们成功开发出一种全新的能源技术，这一技术有望从根本上解决全球能源危机问题。</p>
-    <p>据报道，这项新技术能够以前所未有的效率将太阳能转化为电能，转化率高达70%，远超目前市场上最先进太阳能电池的效率。更令人惊喜的是，该技术使用的材料成本较低，且环境友好，不产生有害废弃物。</p>
-    <p>负责该项目的首席科学家张教授表示："这项技术的突破点在于我们发现了一种新型催化剂，它能够大幅提高能量转换效率。如果能够成功商业化，将彻底改变全球能源格局。"</p>
-    <p>多位业内专家认为，这一技术若能大规模应用，将极大推动清洁能源产业发展，对缓解全球气候变化具有重要意义。</p>
-    <p>目前，研究团队已申请多项专利，并计划在未来两年内与能源企业合作，推动技术产业化。预计首批基于该技术的商业产品将于2025年问世。</p>
-  `,
-    tags: ['科技', '新能源', '环保', '创新'],
-    views: '12.5万',
-    likes: 2300,
-    collects: 568,
-    shares: 421,
-    comments: [
-        {
-            id: 1,
-            username: '科技爱好者',
-            avatar: 'https://img01.yzcdn.cn/vant/cat.jpeg',
-            content: '这项技术如果真的能实现商业化，将是解决能源问题的重大突破！期待后续发展。',
-            time: '1小时前',
-            likes: 356
-        },
-        {
-            id: 2,
-            username: '环保卫士',
-            avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg',
-            content: '清洁能源是未来的必然趋势，支持这样的科研创新，希望能尽快投入实际应用。',
-            time: '1.5小时前',
-            likes: 289
-        },
-        {
-            id: 3,
-            username: '理性思考者',
-            avatar: 'https://fastly.jsdelivr.net/npm/@vant/assets/apple-3.jpeg',
-            content: '虽然技术看起来很有前景，但从实验室到市场还有很长的路要走，建议大家保持理性乐观的态度。',
-            time: '2小时前',
-            likes: 176
-        }
-    ]
-})
+// 处理点赞
+const handleLike = () => {
+  if (!isLiked.value) {
+    newsDetail.value.likes++
+    isLiked.value = true
+    showToast('点赞成功')
+  } else {
+    newsDetail.value.likes--
+    isLiked.value = false
+    showToast('已取消点赞')
+  }
+}
+
+// 处理收藏
+const handleCollect = () => {
+  if (!isCollected.value) {
+    newsDetail.value.collects++
+    isCollected.value = true
+    showToast('收藏成功')
+  } else {
+    newsDetail.value.collects--
+    isCollected.value = false
+    showToast('已取消收藏')
+  }
+}
 </script>
 
 <style scoped>
@@ -439,6 +479,17 @@ const newsDetail = ref({
   align-items: center;
   font-size: 12px;
   color: #666;
+  cursor: pointer;
+}
+
+.action-btn .active {
+  color: #3478F6;
+}
+
+.comment-btn {
+  height: 36px;
+  padding: 0 16px;
+  margin-right: 12px;
 }
 
 .share-icon {

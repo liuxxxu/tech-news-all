@@ -16,7 +16,7 @@
             <a-card-meta title="内容管理">
               <template #description>管理您的文章和素材</template>
             </a-card-meta>
-            <a-button type="primary" style="margin-top: 16px; width: 100%;" @click="$router.push('/article')">
+            <a-button type="primary" style="margin-top: 16px; width: 100%;" @click="$router.push('/content/index')">
               查看文章
             </a-button>
           </a-card>
@@ -30,7 +30,7 @@
             <a-card-meta title="数据统计">
               <template #description>查看内容表现数据</template>
             </a-card-meta>
-            <a-button type="primary" style="margin-top: 16px; width: 100%;" @click="$router.push('/statistics/index')">
+            <a-button type="primary" style="margin-top: 16px; width: 100%;" @click="$router.push('/statistics')">
               查看统计
             </a-button>
           </a-card>
@@ -65,27 +65,7 @@
         </a-col>
       </a-row>
     </div>
-    
-    <div class="quick-actions">
-      <a-divider>快捷操作</a-divider>
-      <a-row :gutter="16">
-        <a-col :span="8">
-          <a-button type="primary" size="large" block @click="$router.push('/publish')">
-            <PlusOutlined /> 发布新文章
-          </a-button>
-        </a-col>
-        <a-col :span="8">
-          <a-button type="default" size="large" block @click="$router.push('/material')">
-            <PictureOutlined /> 管理素材库
-          </a-button>
-        </a-col>
-        <a-col :span="8">
-          <a-button type="default" size="large" block @click="$router.push('/statistics/index')">
-            <LineChartOutlined /> 查看数据趋势
-          </a-button>
-        </a-col>
-      </a-row>
-    </div>
+
     </a-card>
     
   </div>

@@ -1,6 +1,5 @@
 package com.liuxu.model.article.pojos;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -23,4 +22,9 @@ public class AppArticleContent {
      * 文章内容
      */
     private String content;
+
+    /**
+     * AI 总结
+     */
+    private String summary;
 }

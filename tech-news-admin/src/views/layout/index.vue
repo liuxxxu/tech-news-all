@@ -3,7 +3,8 @@
     <a-layout-header class="header">
       <div class="logo">tech-news 管理系统</div>
       <div class="user-info">
-        <span class="welcome">欢迎，{{ userStore.username }}</span>
+        <!-- <span class="welcome">欢迎，{{ userStore.username }}</span> -->
+        <span class="welcome">欢迎，管理员</span>
         <a-button type="link" @click="handleLogout">退出</a-button>
       </div>
     </a-layout-header>

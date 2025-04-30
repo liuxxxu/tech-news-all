@@ -36,13 +36,12 @@
 
           <!-- 资讯列表 -->
           <div class="news-list" v-if="newsList.length > 0">
-            <div class="news-item" v-for="(item, index) in newsList" :key="index" @click="viewNewsDetail(item)">
+            <div class="news-item" v-for="(item, index) in newsList" :key="item.id" @click="viewNewsDetail(item)">
               <div class="news-content">
-                <h3 class="news-title">{{ item.title }}</h3>
+                <h3 class="news-title" v-html="item.title"></h3>
                 <div class="news-info">
-                  <span class="source">{{ item.source }}</span>
-                  <span class="time">{{ item.time }}</span>
-                  <span class="comment-count">{{ item.comments }}评论</span>
+                  <span class="author">{{ item.authorName }}</span>
+                  <span class="time">{{ formatTime(item.publishTime) }}</span>
                 </div>
               </div>
               <div class="news-image" v-if="item.cover">
@@ -190,7 +189,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { showToast, showLoadingToast, closeToast } from '../../utils/vant-ui';
-// import { searchArticles } from '@/api/search';
+import { searchArticlesByWords } from '@/api/search';
 
 const router = useRouter();
 const route = useRoute();
@@ -221,6 +220,7 @@ const finished = ref(false);
 const page = ref(1);
 const pageSize = ref(10);
 const newsList = ref([]);
+const total = ref(0);
 
 // 模拟用户数据
 const allUserList = ref([
@@ -276,74 +276,33 @@ const fetchSearchResults = async (isLoadMore = false) => {
   }
 
   try {
-    // 使用假数据
-    const mockData = {
-      list: [
-        {
-          id: 1,
-              title: 'GPT开山一作，本科学历入职前CTO初，OpenAI痛失“爱因斯坦级天才”',
-          source: '科技日报',
-          time: '2025-04-10 10:00',
-          comments: 328,
-              cover: 'https://img.36krcdn.com/hsossms/20250410/v2_2e5c20b5455a47f28dffb04fd268cfe7@5888275_oswg911146oswg1053oswg495_img_png?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center/format,webp'
-        },
-        {
-          id: 2,
-            title: 'AI时代的教育之问Ⅵ：应用生态',
-          source: '科技前沿',
-          time: '2025-04-09 15:30',
-          comments: 256,
-            cover: 'https://img.36krcdn.com/hsossms/20250409/v2_2dbc5b50f5614461a8f7fa8bfc8c9540@000000_oswg328948oswg1536oswg722_img_000?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center'
-        },
-        {
-          id: 3,
-          title: '阿里的AI 重心，偏向新战场还是旧领地？',
-          source: '企业周刊',
-          time: '2025-04-08 09:15',
-          comments: 189,
-            cover: 'https://img.36krcdn.com/hsossms/20250409/v2_942cb7fde7fb449bac5642931f5bf491@000000_oswg299118oswg1536oswg722_img_000?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center'
-        }
-      ],
-      total: 3
+    const params = {
+      searchWords: keyword.value,
+      pageSize: pageSize.value,
+      pageNum: page.value
     };
 
-    if (isLoadMore) {
-      newsList.value.push(...mockData.list);
-    } else {
-      newsList.value = mockData.list;
-    }
-
-    if (newsList.value.length >= mockData.total) {
-      finished.value = true;
-    } else {
-      page.value += 1;
-    }
-
-    // const params = {
-    //   keyword: keyword.value,
-    //   page: page.value,
-    //   pageSize: pageSize.value,
-    //   sort: currentSort.value === '默认排序' ? 'default' : 
-    //         currentSort.value === '最新发布' ? 'newest' : 'most_viewed',
-    //   category: currentCategory.value === '全部分类' ? '' : currentCategory.value
-    // };
-
-    // const res = await searchArticles(params);
-    // if (res.status === 200) {
-    //   const { list, total } = res.data;
+    const res = await searchArticlesByWords(params);
+    
+    if (res.code === 0) {
+      const { data, currentPage, size, total: totalCount } = res;
       
-    //   if (isLoadMore) {
-    //     newsList.value.push(...list);
-    //   } else {
-    //     newsList.value = list;
-    //   }
+      if (isLoadMore) {
+        newsList.value.push(...data);
+      } else {
+        newsList.value = data;
+      }
 
-    //   if (newsList.value.length >= total) {
-    //     finished.value = true;
-    //   } else {
-    //     page.value += 1;
-    //   }
-    // }
+      total.value = totalCount;
+      
+      if (newsList.value.length >= totalCount) {
+        finished.value = true;
+      } else {
+        page.value += 1;
+      }
+    } else {
+      throw new Error(res.errorMessage || '搜索失败');
+    }
   } catch (error) {
     console.log('获取搜索结果失败', error);
     showToast('加载失败，请重试');
@@ -383,7 +342,7 @@ const onBack = () => {
 
 // 查看新闻详情
 const viewNewsDetail = (item) => {
-  router.push(`/news/${item.id}`);
+  router.push(`/article/${item.id}`);
 };
 
 // 显示排序选项
@@ -478,6 +437,12 @@ const filteredUserList = computed(() => {
   // 默认排序
   return filteredList;
 });
+
+// 格式化时间
+const formatTime = (time) => {
+  const date = new Date(time);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+};
 </script>
 
 <style scoped>
@@ -630,11 +595,11 @@ const filteredUserList = computed(() => {
   color: #999;
 }
 
-.news-info .source {
+.news-info .author {
   margin-right: 8px;
 }
 
-.news-info .time, .news-info .comment-count {
+.news-info .time {
   margin-right: 8px;
 }
 

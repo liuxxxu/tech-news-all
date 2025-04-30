@@ -134,11 +134,6 @@ public class AppArticleServiceImpl extends ServiceImpl<AppArticleMapper, AppArti
         // 2.调用mapper查询
         List<AppArticle> articleList = appArticleMapper.loadArticleList(dto, loadType);
 
-        // 3. 返回结果 (封面需要拷贝访问前缀)
-        // for (AppArticle article : articleList) {
-        //     // 给图片路径加上前缀
-        //     parseArticle(article);
-        // }
         // 3 返回结果
         return ResponseResult.successResult(articleList);
     }
@@ -159,10 +154,6 @@ public class AppArticleServiceImpl extends ServiceImpl<AppArticleMapper, AppArti
                     .get(ArticleConstants.HOT_ARTICLE_FIRST_PAGE + dto.getTag());
             if (StringUtils.isNotBlank(articleListJSON)) {
                 List<AppArticle> apArticles = JSON.parseArray(articleListJSON, AppArticle.class);
-                for (AppArticle apArticle : apArticles) {
-                    // 给图片路径加上前缀
-                    parseArticle(apArticle);
-                }
                 ResponseResult<List<AppArticle>> result = ResponseResult.successResult(apArticles);
                 return result;
             }
@@ -235,6 +226,7 @@ public class AppArticleServiceImpl extends ServiceImpl<AppArticleMapper, AppArti
         AppArticleContent content = new AppArticleContent();
         content.setArticleId(appArticle.getId());
         content.setContent(wmNews.getContent());
+        content.setSummary(wmNews.getSummary());
         appArticleContentMapper.insert(content);
     }
 

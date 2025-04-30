@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liuxu.datasync.mapper.ApArticleMapper">
-    <select id="findAllArticles" resultType="com.liuxu.model.article.pojos.ApArticle">
-        select aa.* from ap_article aa left join ap_article_config
-            aac on aa.id = aac.article_id where aac.is_delete !=1 and aac.is_down !=1
+    <select id="findAllArticles" resultType="com.liuxu.model.article.pojos.AppArticle">
+        select aa.*
+        from app_article aa
+                 left join app_article_config aac on aa.id = aac.article_id
+        where aac.is_delete != 1
+          and aac.is_down != 1
     </select>
 </mapper>

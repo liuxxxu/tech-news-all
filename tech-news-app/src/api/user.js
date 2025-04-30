@@ -2,47 +2,47 @@ import request from '@/utils/request'
 
 // 获取用户详情
 export const getUserInfo = () => {
-    return request.get('/api/user/info')
+    return request.get('user/api/user/info')
 }
 
 // 获取个人信息
 export const getUserInfoDetail = () => {
-    return request.get('/api/user/profile')
+    return request.get('user/api/user/info')
 }
 
 // 更新用户信息
 export const updateUserInfo = (data) => {
-    return request.put('/api/user/info', data)
+    return request.put('user/api/user/info', data)
 }
 
 // 密码登录
 export const loginByPassword = (data) => {
-    return request.post('/api/login/in', data)
+    return request.post('user/api/login/in', data)
 }
 
 // 验证码登录
 export const loginByCode = (data) => {
-    return request.post('/api/login/in', data)
+    return request.post('user/api/login/in', data)
 }
 
 // 获取短信验证码
 export const getVerifyCode = (mobile) => {
-    return request.get(`/api/login/code?mobile=${mobile}`)
+    return request.get(`/user/api/login/code?mobile=${mobile}`)
 }
 
 // 注册
 export const register = (data) => {
-    return request.post('/api/login/register', data)
+    return request.post('user/api/login/register', data)
 }
 
 // 重置密码
 export const resetPassword = (data) => {
-    return request.post('/api/login/reset-password', data)
+    return request.post('user/api/login/reset-password', data)
 }
 
 // 退出登录
 export const logout = () => {
-    return request.post('/api/login/out')
+    return request.post('user/api/login/out')
 }
 
 // 上传图片
@@ -51,7 +51,7 @@ export const upload = (file, fileName, prefix) => {
     formData.append('file', file)
     formData.append('fileName', fileName)
     formData.append('prefix', prefix)
-    return request.post('/api/user/upload', formData, {
+    return request.post('user/api/user/upload', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -81,5 +81,5 @@ export const uploadImage = async (file, prefix) => {
 
 // 提交实名认证
 export const submitMediaCert = (data) => {
-    return request.post('/api/auth/submit', data)
+    return request.post('user/api/auth/submit', data)
 }

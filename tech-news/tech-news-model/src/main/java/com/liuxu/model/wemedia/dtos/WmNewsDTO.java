@@ -1,5 +1,6 @@
 package com.liuxu.model.wemedia.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -27,6 +28,7 @@ public class WmNewsDTO {
     /**
      * 定时发布时间，为null表示立即发布
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date publishTime;
     /**
      * 文章内容
@@ -44,6 +46,12 @@ public class WmNewsDTO {
      * 是否上架  0 下架  1 上架
      */
     private Short enable;
+
+    /**
+     * 原始状态 提交为1  草稿为0
+     */
+    private Short statusOld;
+
     /**
      * 状态 提交为1  草稿为0
      */
